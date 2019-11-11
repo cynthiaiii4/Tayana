@@ -32,8 +32,8 @@
                             <div class="form-group ">
                                 <label for="photo" class="control-label col-lg-2">經銷商圖片</label>
                                 <div class="col-lg-10">
-                                    <asp:image id="Image1" runat="server" />
-                                    <asp:fileupload id="photo" runat="server" class="form-control " required="" oninvalid="setCustomValidity('請上傳照片')" oninput="setCustomValidity('')" clientidmode="Static" />
+                                    <asp:image id="Image1" runat="server" style="width: 200px"/>
+                                    <asp:fileupload id="photo" runat="server" class="form-control "  clientidmode="Static" />
                                     <asp:hiddenfield id="hiddenP" runat="server" />
                                 </div>
                             </div>

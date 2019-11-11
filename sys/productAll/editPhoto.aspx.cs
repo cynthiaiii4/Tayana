@@ -124,8 +124,10 @@ namespace Tayan.sys.productAll
                     string sql2 = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnectionString"]
                         .ConnectionString;
                     SqlConnection memberConnection2 = new SqlConnection(sql2);//建立連線通道
-                    SqlCommand command3 = new SqlCommand(@"UPDATE images SET indexPage=null", memberConnection2);
+                    SqlCommand command3 = new SqlCommand(@"UPDATE images SET indexPage=null where id=@id", memberConnection2);
                     SqlCommand command2 = new SqlCommand($" UPDATE images SET indexPage=@indexPage where id=@id" , memberConnection2);
+                    command3.Parameters.Add("@id", SqlDbType.NVarChar);
+                    command3.Parameters["@id"].Value = Rid2;
                     command2.Parameters.Add("@id", SqlDbType.NVarChar);
                     command2.Parameters["@id"].Value = Rid2;
                     command2.Parameters.Add("@indexPage", SqlDbType.NVarChar);
@@ -150,6 +152,8 @@ namespace Tayan.sys.productAll
 
         protected void uploadPhoto_Click(object sender, EventArgs e)
         {
+            //清空提示語
+            check.Text = "";
             string ConnectionString = System.Web.Configuration.WebConfigurationManager
                 .ConnectionStrings["ConnectionString"].ToString();
             SqlConnection Connection = new SqlConnection(ConnectionString);
@@ -202,6 +206,8 @@ namespace Tayan.sys.productAll
 
         protected void uploadfile_Click(object sender, EventArgs e)
         {
+            //清空提示語
+            check.Text = "";
             string ConnectionString = System.Web.Configuration.WebConfigurationManager
                 .ConnectionStrings["ConnectionString"].ToString();
             SqlConnection Connection = new SqlConnection(ConnectionString);

@@ -38,7 +38,7 @@ namespace Tayan.sys.Dealers
             areaList.SelectedValue = ereader["areaID"].ToString();
             country.Value = ereader["country"].ToString();
             dealer.Value = ereader["dealer"].ToString();
-            dealerInfo.Value = ereader["country"].ToString();
+            dealerInfo.Value = ereader["dealerInfo"].ToString();
             Image1.ImageUrl = @"/sys/uploadfile/dealers/" + ereader["photo"].ToString();
             hiddenP.Value = ereader["photo"].ToString();
             editConnection.Close();
@@ -75,7 +75,7 @@ namespace Tayan.sys.Dealers
                 //取得副檔名
                 string Extension = Path.GetExtension(photo.FileName);
                 //新檔案名稱
-                ifileName = String.Format("{0:yyyyMMddhhmmsss}.{1}", DateTime.Now, Extension);
+                ifileName = String.Format("{0:yyyyMMddhhmmsss}{1}", DateTime.Now, Extension);
                 //上傳目錄為/upload/Images/
                 photo.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/dealers/{0}", ifileName)));
             }

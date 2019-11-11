@@ -2,7 +2,7 @@
 <%@ Register Src="~/sys/PageControl.ascx" TagPrefix="uc1" TagName="PageControl" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
-    <link href="~/sys/PageControl.css" rel="stylesheet" />
+    <link href="PageControl.css" rel="stylesheet" />
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder3" runat="server">
     <div class="row mt" id="table" runat="server">
@@ -14,7 +14,7 @@
 
                 <asp:GridView ID="GridView1" CssClass="table table-striped table-advance table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="id"  OnRowEditing="GridView1_RowEditing" GridLines="None" >
                     <Columns >
-                        <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
+                        <asp:BoundField DataField="RowNumber" HeaderText="項次" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                         <asp:BoundField DataField="series" HeaderText="series" SortExpression="series" />
                         <asp:BoundField DataField="number" HeaderText="number" SortExpression="number" />
                         <asp:TemplateField HeaderText="照片">

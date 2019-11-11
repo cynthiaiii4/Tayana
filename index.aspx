@@ -65,45 +65,62 @@
     <link href="css/reset.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="contain">
-        <div class="sub">
-            <p><a href="#">Home</a></p>
-        </div>
+    <form runat="server">
+        <div class="contain">
+            <div class="sub">
+                <p><a href="#">Home</a></p>
+            </div>
 
-        <!--------------------------------選單開始---------------------------------------------------->
-        <div class="menu">
-            <ul>
-                <li class="menuli01"><a href="#">Yachts</a></li>
-                <li class="menuli02"><a href="#">NEWS</a></li>
-                <li class="menuli03"><a href="#">COMPANY</a></li>
-                <li class="menuli04"><a href="#">DEALERS</a></li>
-                <li class="menuli05"><a href="#">CONTACT</a></li>
-            </ul>
-        </div>
-        <!--------------------------------選單開始結束---------------------------------------------------->
-
-
-        <!--遮罩-->
-        <div class="bannermasks">
-            <img src="images/banner00_masks.png" alt="&quot;&quot;" /></div>
-        <!--遮罩結束-->
+            <!--------------------------------選單開始---------------------------------------------------->
+            <div class="menu">
+                <ul>
+                    <li class="menuli01"><a href="#">Yachts</a></li>
+                    <li class="menuli02"><a href="#">NEWS</a></li>
+                    <li class="menuli03"><a href="#">COMPANY</a></li>
+                    <li class="menuli04"><a href="#">DEALERS</a></li>
+                    <li class="menuli05"><a href="#">CONTACT</a></li>
+                </ul>
+            </div>
+            <!--------------------------------選單開始結束---------------------------------------------------->
 
 
-
-
+            <!--遮罩-->
+            <div class="bannermasks">
+                <img src="images/banner00_masks.png" alt="&quot;&quot;" />
+            </div>
+            <!--遮罩結束-->
 
 
 
 
-        <!--------------------------------換圖開始---------------------------------------------------->
-        <div id="abgne-block-20110111">
-            <div class="bd">
-                <div class="banner">
-                    <%--最上方背景大圖--%>
-                    <ul>
-                        <asp:Literal ID="bLi" runat="server"></asp:Literal>
-                        
-                        <%--<li class="info"><a href="#">
+
+
+
+
+            <!--------------------------------換圖開始---------------------------------------------------->
+            <div id="abgne-block-20110111">
+                <div class="bd">
+                    <div class="banner">
+                        <%--最上方背景大圖--%>
+                        <ul>
+                            <%--<asp:Literal ID="bLi" runat="server"></asp:Literal>--%>
+                            <asp:Repeater ID="Repeater1" runat="server">
+                                <ItemTemplate>
+                                    <li class="info on"><a href="#">
+                                        <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' runat="server" /></a><!--文字開始--><div class="wordtitle">
+                                            <asp:Literal ID="Literal1" runat="server" Text='<%# Bind("series") %>'></asp:Literal>
+                                            <span><asp:Literal ID="Literal2" runat="server" Text='<%# Bind("number") %>'></asp:Literal></span><br />
+                                            <p>SPECIFICATION SHEET</p>
+                                        </div>
+                                        <!--文字結束-->
+                                        <!--新船型開始  54型才出現其於隱藏 -->
+                                        <div class="new">
+                                            <img src="images/new01.png" alt="new" runat="server" visible='<%# Eval("new").ToString()=="True"?true:false %>' />
+                                            <!--新船型結束-->
+                                        </div>
+                                </ItemTemplate>
+                            </asp:Repeater>
+                            <%--<li class="info"><a href="#">
                             <img src="images/banner002b.jpg" /></a><!--文字開始--><div class="wordtitle">TAYANA <span>54</span><br />
                                 <p>SPECIFICATION SHEET</p>
                             </div>
@@ -113,111 +130,116 @@
                                 <img src="images/new01.png" alt="new" /></div>
                             <!--新船型結束-->
                         </li>--%>
-                    </ul>
+                        </ul>
 
 
-                    <!--小圖開始-->
-                    <div class="bannerimg title">
-                        <ul>
-                            <asp:Literal ID="sLi" runat="server"></asp:Literal>
-                          <%--  <li class="on">
+                        <!--小圖開始-->
+                        <div class="bannerimg title">
+                            <ul>
+                                <asp:Literal ID="sLi" runat="server"></asp:Literal>
+                                <asp:Repeater ID="Repeater2" runat="server">
+                                    <ItemTemplate>
+                                        <li class="on">
+                                            <div>
+                                                <p class="bannerimg_p">
+                                                    <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' runat="server" alt="&quot;&quot;" />
+                                                </p>
+                                            </div>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                                <%--  <li class="on">
                                 <div>
                                     <p class="bannerimg_p">
                                         <img src="images/i001.jpg" alt="&quot;&quot;" /></p>
                                 </div>
                             </li>--%>
-                        </ul>
+                            </ul>
+                        </div>
+                        <!--小圖結束-->
                     </div>
-                    <!--小圖結束-->
                 </div>
             </div>
-        </div>
-        <!--------------------------------換圖結束---------------------------------------------------->
+            <!--------------------------------換圖結束---------------------------------------------------->
 
 
-        <!--------------------------------最新消息---------------------------------------------------->
-        <div class="news">
-            <div class="newstitle">
-                <p class="newstitlep1">
-                    <img src="images/news.gif" alt="news" /></p>
-                <p class="newstitlep2"><a href="#">More>></a></p>
-            </div>
+            <!--------------------------------最新消息---------------------------------------------------->
+            <div class="news">
+                <div class="newstitle">
+                    <p class="newstitlep1">
+                        <img src="images/news.gif" alt="news" />
+                    </p>
+                    <p class="newstitlep2"><a href="#">More>></a></p>
+                </div>
 
-            <ul>
-                <!--TOP第一則最新消息-->
-                <li>
+                <ul>
+                    <asp:Repeater ID="Repeater3" runat="server">
+                        <ItemTemplate>
+                            <!--TOP第一則最新消息-->
+                            <li style="position: relative">
+                                <div class="news01">
+                                    <!--TOP標籤-->
+                                    <div class="newstop" style="top:0px">
+                                        <img src="images/new_top01.png" alt="&quot;&quot;" runat="server" Visible='<%# Eval("topNews").ToString()=="True"?true:false %>'/>
+                                    </div>
+                                    <!--TOP標籤結束-->
+                                    <div class="news02p1">
+                                        <p class="news02p1img">
+                                            <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' runat="server" alt="&quot;&quot;" />
+                                        </p>
+                                    </div>
+                                    <p class="news02p2">
+                                        <span><asp:Literal ID="Literal2" runat="server" Text='<%# Eval("title").ToString().Length>20?Eval("title").ToString().Substring(0,20)+"...":Eval("title") %>'></asp:Literal></span>
+                                        <a href="#"><asp:Literal ID="Literal3" runat="server" Text='<%# Eval("summary").ToString().Length>50?Eval("summary").ToString().Substring(0,30)+"...":Eval("summary") %>'></asp:Literal></a>
+                                    </p>
+                                </div>
+                            </li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                    <!--TOP第一則最新消息結束-->
 
-                    <div class="news01">
-                        <!--TOP標籤-->
-                        <div class="newstop">
-                            <img src="images/new_top01.png" alt="&quot;&quot;" /></div>
-                        <!--TOP標籤結束-->
-                        <div class="news02p1">
-                            <p class="news02p1img">
-                                <img src="images/pit002.jpg" alt="&quot;&quot;" /></p>
+                    <!--第二則-->
+                   <%-- <li>
+
+                        <div class="news01">
+                            <!--TOP標籤-->
+                            <div class="newstop">
+                                <img src="images/new_top01.png" alt="&quot;&quot;" />
+                            </div>
+                            <!--TOP標籤結束-->
+                            <div class="news02p1">
+                                <p class="news02p1img">
+                                    <img src="images/pit001.jpg" alt="&quot;&quot;" />
+                                </p>
+                            </div>
+                            <p class="news02p2">
+                                <span>Tayana 58 CE Certifica..</span>
+                                <a href="#">For Tayana 58 entering the EU, CE Certificates are AVAILABLE to ensure conformity to all applicable European ...</a>
+                            </p>
                         </div>
-                        <p class="news02p2"><span>Tayana 54 CE Certifica..</span> <a href="#">For Tayana 54 entering the EU, CE Certificates are AVAILABLE to ensure conformity to all applicable European ...</a></p>
-                    </div>
-                </li>
-                <!--TOP第一則最新消息結束-->
-
-                <!--第二則-->
-                <li>
-
-                    <div class="news01">
-                        <!--TOP標籤-->
-                        <div class="newstop">
-                            <img src="images/new_top01.png" alt="&quot;&quot;" /></div>
-                        <!--TOP標籤結束-->
-                        <div class="news02p1">
-                            <p class="news02p1img">
-                                <img src="images/pit001.jpg" alt="&quot;&quot;" /></p>
-                        </div>
-                        <p class="news02p2">
-                            <span>Tayana 58 CE Certifica..</span>
-                            <a href="#">For Tayana 58 entering the EU, CE Certificates are AVAILABLE to ensure conformity to all applicable European ...</a>
-                        </p>
-                    </div>
-                </li>
-                <!--第二則結束-->
-
-                <li>
-                    <div class="news02">
-                        <!--TOP標籤-->
-                        <div class="newstop">
-                            <img src="images/new_top01.png" alt="&quot;&quot;" /></div>
-                        <!--TOP標籤結束-->
-                        <div class="news02p1">
-                            <p class="news02p1img">
-                                <img src="images/pit001.jpg" alt="&quot;&quot;" /></p>
-                        </div>
-                        <p class="news02p2">
-                            <span>Big Cruiser in a Small ..</span>
-                            <a href="#">Tayana 37 is our classical product and full of skilful craftsmanship. We only plan to build TWO units in a year.</a>
-                        </p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-        <!--------------------------------最新消息結束---------------------------------------------------->
-
-
-
-        <!--------------------------------落款開始---------------------------------------------------->
-        <div class="footer">
-
-            <div class="footerp00">
-                <a href="#">
-                    <img src="images/tog.jpg" alt="&quot;&quot;" /></a>
-                <p class="footerp001">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
+                    </li>--%>
+                    <!--第二則結束-->
+                </ul>
             </div>
-            <div class="footer01">
-                <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
-                <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
-            </div>
-        </div>
-        <!--------------------------------落款結束---------------------------------------------------->
+            <!--------------------------------最新消息結束---------------------------------------------------->
 
-    </div>
+
+
+            <!--------------------------------落款開始---------------------------------------------------->
+            <div class="footer">
+
+                <div class="footerp00">
+                    <a href="#">
+                        <img src="images/tog.jpg" alt="&quot;&quot;" /></a>
+                    <p class="footerp001">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
+                </div>
+                <div class="footer01">
+                    <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
+                    <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
+                </div>
+            </div>
+            <!--------------------------------落款結束---------------------------------------------------->
+
+        </div>
+    </form>
 </body>
 </html>

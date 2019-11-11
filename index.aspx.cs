@@ -15,41 +15,58 @@ namespace Tayan
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            string login = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
-            SqlConnection Connection = new SqlConnection(login);
-            SqlCommand Command = new SqlCommand($"SELECT * FROM image WHERE indexPage='True'", Connection);
-            
+            #region 圖
+            string commandString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
+            SqlConnection Connection = new SqlConnection(commandString);
+            SqlCommand Command = new SqlCommand($"SELECT TOP 6 img,new,(SELECT series from [dbo].[products] WHERE [productID]=[id])as series,(SELECT number from [dbo].[products] WHERE [productID]=[id])as number FROM images WHERE indexPage = 1", Connection);
             SqlDataAdapter Adapter = new SqlDataAdapter(Command);
             DataTable dataTable = new DataTable();
             Adapter.Fill(dataTable);
+            Repeater1.DataSource = dataTable;
+            Repeater1.DataBind();
+            Repeater2.DataSource = dataTable;
+            Repeater2.DataBind();
+            #endregion
 
-            //最上方背景大圖
-            StringBuilder bigLi = new StringBuilder();
+            #region 最新消息
+            SqlCommand NEWSCommand = new SqlCommand($"SELECT TOP 3 * FROM news ORDER BY topNews desc, id desc", Connection);
+            SqlDataAdapter Adapter2 = new SqlDataAdapter(NEWSCommand);
+            DataTable dataTable2 = new DataTable();
+            Adapter2.Fill(dataTable2);
+            Repeater3.DataSource = dataTable2;
+            Repeater3.DataBind();
+            #endregion
 
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-            {
-                bigLi.Append(@"<li class=""info on""><a href=""#"">< img src = ""images/" + dataTable.Rows[i][4] +
-                             @"""/></a>< div class=""wordtitle"">" + dataTable.Rows[i][2] + "<span>" +
-                             dataTable.Rows[i][3] + @"</span><br/><p>SPECIFICATION SHEET</p></ div >");
-                    
-                if (!string.IsNullOrEmpty(dataTable.Rows[i][6].ToString()))
-                {
-                    bigLi.Append(@"<div class=""new""><img src = ""images/new01.png"" alt=""new"" /></div>");
-                }
+            #region 組字串版
+            ////最上方背景大圖
+            //StringBuilder bigLi = new StringBuilder();
 
-                bigLi.Append("</li>");
-            }
-            bLi.Text= bigLi.ToString();
+            //for (int i = 0; i < dataTable.Rows.Count; i++)
+            //{
+            //    bigLi.Append(@"<li class=""info on""><a href=""#"">< img src = ""images/" + dataTable.Rows[i][4] +
+            //                 @"""/></a>< div class=""wordtitle"">" + dataTable.Rows[i][2] + "<span>" +
+            //                 dataTable.Rows[i][3] + @"</span><br/><p>SPECIFICATION SHEET</p></ div >");
 
-            //最上方輪播小圖
-            StringBuilder smallLi = new StringBuilder();
-            for (int i = 0; i < dataTable.Rows.Count; i++)
-            {
-                smallLi.Append(@"<li class=""on""><div><p class=""bannerimg_p""><img src = ""images/"+ dataTable.Rows[i][4] +@"""alt=""&quot;&quot;"" /></p></div></li>");
+            //    if (!string.IsNullOrEmpty(dataTable.Rows[i][4].ToString()))
+            //    {
+            //        bigLi.Append(@"<div class=""new""><img src = ""images/new01.png"" alt=""new"" /></div>");
+            //    }
 
-            }
-            sLi.Text = smallLi.ToString();
+            //    bigLi.Append("</li>");
+            //}
+            //bLi.Text = bigLi.ToString();
+
+            ////最上方輪播小圖
+            //StringBuilder smallLi = new StringBuilder();
+            //for (int i = 0; i < dataTable.Rows.Count; i++)
+            //{
+            //    smallLi.Append(@"<li class=""on""><div><p class=""bannerimg_p""><img src = ""images/" + dataTable.Rows[i][4] + @"""alt=""&quot;&quot;"" /></p></div></li>");
+
+            //}
+            //sLi.Text = smallLi.ToString();
+            #endregion
+
         }
-        
+
     }
 }

@@ -23,14 +23,14 @@
 
                 <asp:GridView ID="GridView1" CssClass="table table-striped table-advance table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" GridLines="None" >
                     <Columns >
-                        <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
+                        <asp:BoundField DataField="RowNumber" HeaderText="項次" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                         <asp:BoundField DataField="series" HeaderText="series" SortExpression="series" />
                         <asp:BoundField DataField="number" HeaderText="number" SortExpression="number" />
-                       <%-- <asp:TemplateField HeaderText="照片">
+                        <asp:TemplateField HeaderText="照片">
                             <ItemTemplate>
                                 <asp:Image ImageUrl='<%# "/sys/uploadfile/images/"+Eval("img") %>' ID="Image1"  runat="server" style="width: 200px"/>
                             </ItemTemplate>
-                        </asp:TemplateField>--%>
+                        </asp:TemplateField>
                         <asp:TemplateField>
                             
                             <ItemTemplate>

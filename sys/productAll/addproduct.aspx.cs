@@ -7,6 +7,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.Services.Description;
+using System.Web.Services.Protocols;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -108,86 +109,93 @@ namespace Tayan.sys.productAll
 
                 #endregion
 
+                
                 #region 寫入首頁照片
 
-                if (indexImg.HasFile)
-                {
-                    SqlCommand pCommand =
-                        new SqlCommand(
-                            $"INSERT INTO images(productID,img,indexPage,new) VALUES(@productID,@img,@indexPage,@new)",
-                            Connection);
-                    pCommand.Parameters.Add("@productID", SqlDbType.NVarChar);
-                    pCommand.Parameters["@productID"].Value = nid;
-                    pCommand.Parameters.Add("@img", SqlDbType.NVarChar);
-                    pCommand.Parameters["@img"].Value = ifileName;
-                    pCommand.Parameters.Add("@indexPage", SqlDbType.NVarChar);
-                    pCommand.Parameters["@indexPage"].Value = true;
-                    pCommand.Parameters.Add("@new", SqlDbType.NVarChar);
-                    if (newProduct.Checked)
+                    if (indexImg.HasFile)
                     {
-                        pCommand.Parameters["@new"].Value = true;
+                        SqlCommand pCommand =
+                            new SqlCommand(
+                                $"INSERT INTO images(productID,img,indexPage,new) VALUES(@productID,@img,@indexPage,@new)",
+                                Connection);
+                        pCommand.Parameters.Add("@productID", SqlDbType.NVarChar);
+                        pCommand.Parameters["@productID"].Value = nid;
+                        pCommand.Parameters.Add("@img", SqlDbType.NVarChar);
+                        pCommand.Parameters["@img"].Value = ifileName;
+                        pCommand.Parameters.Add("@indexPage", SqlDbType.NVarChar);
+                        pCommand.Parameters["@indexPage"].Value = true;
+                        pCommand.Parameters.Add("@new", SqlDbType.NVarChar);
+                        if (newProduct.Checked)
+                        {
+                            pCommand.Parameters["@new"].Value = true;
+                        }
+                        else
+                        {
+                            pCommand.Parameters["@new"].Value = "";
+                        }
+
+                        Connection.Open();
+                        pCommand.ExecuteNonQuery();
+                        Connection.Close();
                     }
-                    else
+
+                    #endregion
+
+                    #region 寫入其他照片
+
+                    foreach (var item in fileName)
                     {
-                        pCommand.Parameters["@new"].Value = "";
-                    }
-                    Connection.Open();
-                    pCommand.ExecuteNonQuery();
-                    Connection.Close();
-                }
-                
-                #endregion
-
-                #region 寫入其他照片
-                foreach (var item in fileName)
-                {
-                    SqlCommand oCommand =
-                        new SqlCommand(
-                            $"INSERT INTO images(productID,img) VALUES(@productID,@img)",
-                            Connection);
-                    oCommand.Parameters.Add("@productID", SqlDbType.NVarChar);
-                    oCommand.Parameters["@productID"].Value = nid;
-                    oCommand.Parameters.Add("@img", SqlDbType.NVarChar);
-                    oCommand.Parameters["@img"].Value = item;
-                    Connection.Open();
-                    oCommand.ExecuteNonQuery();
-                    Connection.Close();
-                }
-                #endregion
-
-
-                //寫入其他檔案
-                if (files.HasFile)
-                {
-                    int i = 1;
-                    foreach (var item in files.PostedFiles)
-                    {
-                        //取得副檔名
-                        string Extension = Path.GetExtension(item.FileName);
-                        //取得原檔名
-                        string itemname = Path.GetFileName(item.FileName);
-                        //新檔案名稱
-                        string ofileName = String.Format("{0:yyyyMMddhhmmsss}-{1}.{2}", DateTime.Now,i, Extension);
-                        //上傳目錄為/upload/Images/
-                        files.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/files/{0}", ofileName)));
-                        i++;
                         SqlCommand oCommand =
                             new SqlCommand(
-                                $"INSERT INTO downloads(productID,filename,showname) VALUES(@productID,@filename,@showname)",
+                                $"INSERT INTO images(productID,img) VALUES(@productID,@img)",
                                 Connection);
                         oCommand.Parameters.Add("@productID", SqlDbType.NVarChar);
                         oCommand.Parameters["@productID"].Value = nid;
-                        oCommand.Parameters.Add("@filename", SqlDbType.NVarChar);
-                        oCommand.Parameters["@filename"].Value = ofileName;
-                        oCommand.Parameters.Add("@showname", SqlDbType.NVarChar);
-                        oCommand.Parameters["@showname"].Value = itemname;
+                        oCommand.Parameters.Add("@img", SqlDbType.NVarChar);
+                        oCommand.Parameters["@img"].Value = item;
                         Connection.Open();
                         oCommand.ExecuteNonQuery();
                         Connection.Close();
                     }
-                }
 
-                Response.Redirect("~/sys/productAll/products.aspx");
+                    #endregion
+
+
+                    //寫入其他檔案
+                    if (files.HasFile)
+                    {
+                        int i = 1;
+                        foreach (var item in files.PostedFiles)
+                        {
+                            //取得副檔名
+                            string Extension = Path.GetExtension(item.FileName);
+                            //取得原檔名
+                            string itemname = Path.GetFileName(item.FileName);
+                            //新檔案名稱
+                            string ofileName = String.Format("{0:yyyyMMddhhmmsss}-{1}.{2}", DateTime.Now, i, Extension);
+                            //上傳目錄為/upload/Images/
+                            files.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/files/{0}", ofileName)));
+                            i++;
+                            SqlCommand oCommand =
+                                new SqlCommand(
+                                    $"INSERT INTO downloads(productID,filename,showname) VALUES(@productID,@filename,@showname)",
+                                    Connection);
+                            oCommand.Parameters.Add("@productID", SqlDbType.NVarChar);
+                            oCommand.Parameters["@productID"].Value = nid;
+                            oCommand.Parameters.Add("@filename", SqlDbType.NVarChar);
+                            oCommand.Parameters["@filename"].Value = ofileName;
+                            oCommand.Parameters.Add("@showname", SqlDbType.NVarChar);
+                            oCommand.Parameters["@showname"].Value = itemname;
+                            Connection.Open();
+                            oCommand.ExecuteNonQuery();
+                            Connection.Close();
+                        }
+                    }
+
+                    Response.Redirect("~/sys/productAll/products.aspx");
+                
+                
+               
             }
 
         }

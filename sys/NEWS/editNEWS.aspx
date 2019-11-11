@@ -20,7 +20,7 @@
                                 <label for="img" class="control-label col-lg-2">圖片
                                 </label>
                                 <div class="col-lg-10">
-                                    <asp:Image ID="Image1" runat="server" />
+                                    <asp:Image ID="Image1" runat="server" style="width: 200px"/>
                                     <asp:FileUpload ID="img" runat="server" class="form-control " />
                                     <asp:HiddenField ID="hiddenP" runat="server" />
                                 </div>

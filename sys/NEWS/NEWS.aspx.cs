@@ -40,17 +40,60 @@ namespace Tayan.sys.NEWS
             string sql1 = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnectionString"]
                 .ConnectionString;
             SqlConnection memberConnection = new SqlConnection(sql1);//建立連線通道
+            string searchString = "";
+            string commandString =
+                $"WITH ClassData AS\r\n(\r\nselect\r\nROW_NUMBER() OVER(ORDER BY topNews desc,id desc) AS RowNumber\r\n,* from dbo.news \r\n\r\nwhere 1=1\r\n\r\n/*--where begin --*/\r\n\r\n/*--where End--*/\r\n)\r\nselect * from ClassData WHERE RowNumber >=@start  and RowNumber <=@end";
+            if (!string.IsNullOrEmpty(timeStart.Value))
+            {
+                searchString += "and initDate>@timeStart ";
+            }
+            if (!string.IsNullOrEmpty(timeEnd.Value))
+            {
+                searchString += "and initDate<@timeEnd ";
+            }
+            if (!string.IsNullOrEmpty(keyword.Value))
+            {
+                searchString += "and ((title LIKE % @keyword %) OR (summary LIKE % @keyword %) OR (newsContent LIKE % @keyword %))";
+            }
 
+            commandString = commandString.Replace("/*--where begin --*/",
+                String.Format("/*--where begin --*/{0}{1}", Environment.NewLine, searchString));
             //分頁
-            SqlCommand showcommand = new SqlCommand($"WITH ClassData AS\r\n(\r\n/*--order by 請在程式覆蓋 ORDER BY ModulePublish.initDate --*/\r\n\r\nselect\r\nROW_NUMBER() OVER(ORDER BY topNews,id desc) AS RowNumber\r\n,* from dbo.news \r\n\r\nwhere 1=1\r\n\r\n/*--where begin --*/\r\n\r\n/*--where End--*/\r\n)\r\nselect * from ClassData WHERE RowNumber >=@start  and RowNumber <=@end", memberConnection);
+            SqlCommand showcommand = new SqlCommand(commandString, memberConnection);
             int currentPage = Request.QueryString["Page"] == null ? 1 : Convert.ToInt32(Request.QueryString["Page"]);
             int pageSize = 10;
             showcommand.Parameters.Add("@start", SqlDbType.Int);
             showcommand.Parameters["@start"].Value = ((currentPage - 1) * pageSize) + 1;
             showcommand.Parameters.Add("@end", SqlDbType.Int);
             showcommand.Parameters["@end"].Value = currentPage * pageSize;
+            showcommand.Parameters.Add("@keyword", SqlDbType.NVarChar);
+            showcommand.Parameters["@keyword"].Value = keyword.Value;
+            if (!string.IsNullOrEmpty(timeStart.Value))
+            {
+                showcommand.Parameters.Add("@timeStart", SqlDbType.DateTime);
+                showcommand.Parameters["@timeStart"].Value = DateTime.Parse(timeStart.Value).ToString("yyyy-MM-dd");
+            }
+            if (!string.IsNullOrEmpty(timeEnd.Value))
+            {
+                showcommand.Parameters.Add("@timeEnd", SqlDbType.DateTime);
+                showcommand.Parameters["@timeEnd"].Value = DateTime.Parse(timeEnd.Value).AddDays(1).ToString("yyyy-MM-dd");
+            }
             //show總筆數
-            SqlCommand count = new SqlCommand("Select count(*) from news", memberConnection);
+            string countString = "Select count(*) from news WHERE 1=1 /*--where begin --*/";
+            countString = countString.Replace("/*--where begin --*/",
+                String.Format("/*--where begin --*/{0}{1}", Environment.NewLine, searchString));
+            SqlCommand count = new SqlCommand(countString, memberConnection);
+            showcommand.Parameters["@keyword"].Value = keyword.Value;
+            if (!string.IsNullOrEmpty(timeStart.Value))
+            {
+                showcommand.Parameters.Add("@timeStart", SqlDbType.DateTime);
+                showcommand.Parameters["@timeStart"].Value = DateTime.Parse(timeStart.Value).ToString("yyyy-MM-dd");
+            }
+            if (!string.IsNullOrEmpty(timeEnd.Value))
+            {
+                showcommand.Parameters.Add("@timeEnd", SqlDbType.DateTime);
+                showcommand.Parameters["@timeEnd"].Value = DateTime.Parse(timeEnd.Value).AddDays(1).ToString("yyyy-MM-dd");
+            }
             SqlDataAdapter dataAdapter1 = new SqlDataAdapter(count);
             DataTable datatable1 = new DataTable();
             dataAdapter1.Fill(datatable1);
@@ -66,7 +109,6 @@ namespace Tayan.sys.NEWS
             GridView1.DataSource = datatable;
             GridView1.DataBind();
 
-
         }
         protected void GridView1_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
@@ -79,7 +121,8 @@ namespace Tayan.sys.NEWS
             memberConnection.Open();
             deletecommand.ExecuteNonQuery();
             memberConnection.Close();
-            ShowData();
+            string page = Request["page"] ?? "1";
+            Response.Redirect($"editNEWS.aspx?page={page}");
         }
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {

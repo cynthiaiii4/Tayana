@@ -92,8 +92,10 @@ namespace Tayan.sys.NEWS
                 
                 SqlCommand Command =
                     new SqlCommand(
-                        $"UPDATE news SET title=@title,summary=@summary,img=@img,newsContent=@newsContent,topNews=@topNews",
+                        $"UPDATE news SET title=@title,summary=@summary,img=@img,newsContent=@newsContent,topNews=@topNews WHERE id=@id",
                         Connection);
+                Command.Parameters.Add("@id", SqlDbType.NVarChar);
+                Command.Parameters["@id"].Value = Request.QueryString["id"];
                 Command.Parameters.Add("@title", SqlDbType.NVarChar);
                 Command.Parameters["@title"].Value = title.Value;
                 Command.Parameters.Add("@summary", SqlDbType.NVarChar);

@@ -28,7 +28,7 @@ namespace Tayan.sys
             SqlConnection memberConnection = new SqlConnection(sql1);//建立連線通道
 
             //分頁
-            SqlCommand showcommand = new SqlCommand($"WITH ClassData AS\r\n(select ROW_NUMBER() OVER(ORDER BY [dbo].[products].id desc) AS RowNumber,* ,(SELECT img from [dbo].[images] where productID=[dbo].[products].id and [dbo].[images].indexPage = 1)as img from [dbo].[products] )\r\nselect * from ClassData WHERE RowNumber >=@start  and RowNumber <=@end", memberConnection);
+            SqlCommand showcommand = new SqlCommand($"WITH ClassData AS\r\n(select ROW_NUMBER() OVER(ORDER BY [dbo].[products].id desc) AS RowNumber,* ,(SELECT img from [dbo].[images] where productID=[dbo].[products].id and [dbo].[images].indexPage =1)as img from [dbo].[products] )\r\nselect * from ClassData WHERE RowNumber >=@start  and RowNumber <=@end and img is not null", memberConnection);
             //select * ,(SELECT series from[dbo].[products] where[dbo].[products].id=productID)as serie,(SELECT number from[dbo].[products] where[dbo].[products].id=productID)as number
             //from[dbo].[images] where[dbo].[images].indexPage = 1
             int currentPage = Request.QueryString["Page"] == null ? 1 : Convert.ToInt32(Request.QueryString["Page"]);
@@ -38,7 +38,7 @@ namespace Tayan.sys
             showcommand.Parameters.Add("@end", SqlDbType.Int);
             showcommand.Parameters["@end"].Value = currentPage * pageSize;
             //show總筆數
-            SqlCommand count = new SqlCommand("Select count(*) from images", memberConnection);
+            SqlCommand count = new SqlCommand("Select count(*) from images WHERE indexPage=1", memberConnection);
             SqlDataAdapter dataAdapter1 = new SqlDataAdapter(count);
             DataTable datatable1 = new DataTable();
             dataAdapter1.Fill(datatable1);

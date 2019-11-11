@@ -23,7 +23,7 @@
 
                 <asp:GridView ID="GridView1" CssClass="table table-striped table-advance table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" GridLines="None" >
                     <Columns >
-                        <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
+                        <asp:BoundField DataField="RowNumber" HeaderText="項次" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                         <asp:BoundField DataField="area" HeaderText="地區" SortExpression="area" />
                         <asp:BoundField DataField="country" HeaderText="國家" SortExpression="country" />
                         <asp:BoundField DataField="dealer" HeaderText="經銷商" SortExpression="dealer" />
