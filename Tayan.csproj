@@ -70,6 +70,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Contact.aspx" />
+    <Content Include="css\csshover.htc" />
+    <Content Include="css\homestyle.css" />
+    <Content Include="css\iepngfix.htc" />
+    <Content Include="css\jquery.ad-gallery.css" />
+    <Content Include="css\js.css" />
+    <Content Include="css\reset.css" />
+    <Content Include="css\style.css" />
+    <Content Include="Scripts\AC_RunActiveContent.js" />
+    <Content Include="Scripts\jquery-1.6.1.min.js" />
+    <Content Include="Scripts\jquery.ad-gallery.js" />
+    <Content Include="Scripts\jquery.cycle.all.2.74.js" />
+    <Content Include="Scripts\jquery.cycle.all.latest.js" />
+    <Content Include="Scripts\jquery.event.hover-1.0.js" />
+    <Content Include="Scripts\jquery.min.js" />
+    <Content Include="Scripts\jquery.timers.js" />
     <Content Include="sys\Dealers\Area.aspx" />
     <Content Include="sys\Dealers\addDealer.aspx" />
     <Content Include="sys\Dealers\editDealer.aspx" />
@@ -94,6 +110,14 @@
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contact.aspx.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Contact.aspx.designer.cs">
+      <DependentUpon>Contact.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="App_Code\myFunction.cs" />
     <Compile Include="Tayana.Master.cs">
       <DependentUpon>Tayana.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -101,7 +125,6 @@
     <Compile Include="Tayana.Master.designer.cs">
       <DependentUpon>Tayana.Master</DependentUpon>
     </Compile>
-    <Content Include="App_Code\myFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -267,9 +290,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>

@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Net.Mail;
 using System.Web;
 
-namespace Tayan.App_Code
+namespace Tayan
 {
     public class myFunction
     {
@@ -23,7 +24,7 @@ namespace Tayan.App_Code
         /// <param name="MaxWidth">指定要縮的寬度</param>
         /// <param name="MaxHight">指定要縮的高度</param>
         /// <remarks></remarks>
-        static public void GenerateThumbnailImage(string name, string source, string target, string suffix, int MaxWidth, int MaxHight)
+        public static void GenerateThumbnailImage(string name, string source, string target, string suffix, int MaxWidth, int MaxHight)
         {
             System.Drawing.Image baseImage = System.Drawing.Image.FromFile(source + "\\" + name);
             Single ratio = 0.0F; //存放縮圖比例
@@ -74,6 +75,34 @@ namespace Tayan.App_Code
 
         }
         #endregion
-    }
 
+        #region Gmail寄信
+
+        public static void SendGmailMail(string fromAddress, string toAddress, string Subject, string MailBody, string password)
+        {
+
+            MailMessage mailMessage = new MailMessage(fromAddress, toAddress);
+            mailMessage.Subject = Subject;
+            mailMessage.IsBodyHtml = true;
+            mailMessage.Body = MailBody;
+            // SMTP Server
+            SmtpClient mailSender = new SmtpClient("smtp.gmail.com");
+            System.Net.NetworkCredential basicAuthenticationInfo = new System.Net.NetworkCredential(fromAddress, password);
+            mailSender.Credentials = basicAuthenticationInfo;
+            mailSender.Port = 587;
+            mailSender.EnableSsl = true;
+            try
+            {
+                mailSender.Send(mailMessage);
+                mailMessage.Dispose();
+            }
+            catch
+            {
+                return;
+            }
+            mailSender = null;
+        }
+
+        #endregion
+    }
 }

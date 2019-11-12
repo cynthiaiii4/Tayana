@@ -5,7 +5,7 @@
 	width: 600px;
 	}
 	#abgne-block-20110111 .info {
-		display: none;
+	display: none;
 	}
 	#abgne-block-20110111 .on {
 		display: block;
@@ -33,23 +33,55 @@
 	
 	
 	
-	
-	a img {
+	ul, li {
+		margin: 0;
+		padding: 0;
+		list-style: none;
+	}
+	.slideshow {
+		position: relative;
+		height: 160px;
+		width: 210px;
+		float: left;
+		margin: 0 10px;
+		border: 3px solid #ddd;
+	}
+	.slideshow li {
+		position: absolute;
+	}
+	.slideshow a img{
+		display: block;
+		padding: 0;
+		margin: 0 auto;
 		border: none;
 	}
-	#abgne_fade_pic {
-	position: relative;
-	border: 1px solid #ccc;
+	.slideshow li a{
+		display: block;
 	}
-	#abgne_fade_pic a.ad {
-		position: absolute;	/* 讓圖片疊在一起 */
+	.slideshowController {
+		position: absolute;
+		right: 0;
+		bottom: 0;
 	}
-	#abgne_fade_pic .control {
-	position: absolute;
+	.slideshowController a {
+		background: transparent url(images/arrows.png) no-repeat left top;
+		display: block;
+		width: 30px;
+		height: 30px;
+		position: absolute;
+		right: 60px;
+		bottom: 0;
+		z-index: 9999;
+		outline: none;	/* 去除超連結虛線 */
 	}
-	#abgne_fade_pic .control a {
-	text-decoration: none;
+	.slideshowController .next{
+		background-position: -30px 0;
+		right: 0;
 	}
-	#abgne_fade_pic .control a.on {
-
+	.slideshowController .play{
+		background-position: -60px 0;
+		right: 30px;
+	}
+	.slideshowController .pause{
+		background-position: -90px 0;
 	}

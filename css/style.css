@@ -21,8 +21,8 @@ body {
 	margin-left: auto;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: 90%;
-	position: relative;
 	background-color: #FFFFFF;
+	position: relative;
 }
 .sub {
 	float: left;
@@ -63,21 +63,20 @@ body {
 	float: left;
 	display: block;
 	height: 71px;
-	text-decoration: none;
 	color: #F6F6F6;
 	font-size: 0px;
 }
+
 .menu a {
 	color: #F6F6F6;
 	text-decoration: none;
 	display: block;
+	height: 71px;
 }
-
-.menuli01 {
+.menuli01  {
 	background-image: url(../images/menu1_03.gif);
 	width: 80px;
 	float: left;
-	display: block;
 }
 .menuli01:hover {
 	background-image: url(../images/menu2_03.gif);
@@ -86,7 +85,6 @@ body {
 	background-image: url(../images/menu1_04.gif);
 	width: 79px;
 	float: left;
-	display: block;
 }
 .menuli02:hover {
 	background-image: url(../images/menu2_04.gif);
@@ -130,9 +128,6 @@ body {
 .news {
 	width: 1002px;
 	margin-top: 18px;
-	position: relative;
-	top: 0px;
-	left: 0px;
 	float: left;
 }
 .news a {
@@ -165,8 +160,8 @@ body {
 
 .news ul {
 	float: left;
-	width: 100%;
 	margin-top: 15px;
+	width: 100%;
 }
 
 .news li {
@@ -174,23 +169,25 @@ body {
 	padding-left: 22px;
 }
 .newstop {
+	top: 0px;
+	left: 0px;
 	position: absolute;
-	top: 32px;
-	left: 22px;
 }
 .news01 {
-	float: left;
 	background-color: #FFFFFF;
 	padding: 12px;
 	border: 1px solid #d7d7d7;
 	font-size: 90%;
+	float: left;
+	position: relative;
 }
 
 .news02 {
-	float: left;
 	background-color: #eeebdc;
 	padding: 12px;
 	font-size: 90%;
+	float: left;
+	position: relative;
 }
 .news02p1, .news01p1 {
 	padding: 5px;

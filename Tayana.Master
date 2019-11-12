@@ -1,19 +1,22 @@
 ﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Tayana.master.cs" Inherits="Tayan.Tayana" %>
 
-<!DOCTYPE html>
+<!DOCTYPE html "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html>
+<html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
-    <script type="text/javascript" src="Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="Scripts/jquery.cycle.all.2.74.js"></script>
-    <link href="css/reset.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
+    <script type="text/javascript" src="/Scripts/jquery.cycle.all.2.74.js"></script>
+    <link href="/css/homestyle.css" rel="stylesheet" type="text/css" />
+    <link href="/css/reset.css" rel="stylesheet" type="text/css" />
+   
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:HiddenField ID="hiddenyo" runat="server" />
         <div class="contain">
             <div class="sub">
                 <p><a href="#">Home</a></p>
@@ -32,7 +35,7 @@
             <!--------------------------------選單開始結束---------------------------------------------------->
             <!--遮罩-->
             <div class="bannermasks">
-                <img src="images/DEALERS.jpg" alt="&quot;&quot;" width="967" height="371" />
+                <img alt="&quot;&quot;" width="967" height="371" runat="server" id="topImg"/>
             </div>
             <!--遮罩結束-->
 
@@ -54,20 +57,28 @@
 
             </div>
             <!--換圖結束-->
+            <div class="conbg">
             <!--------------------------------左邊選單開始---------------------------------------------------->
+            
             <div class="left">
 
                 <div class="left1">
                     <p><span>YACHTS</span></p>
                     <ul>
-                        <li><a href="#">Dynasty 72</a></li>
-                        <li><a href="#">Tayana 64</a></li>
-                        <li><a href="#">Tayana 58</a></li>
-                        <li><a href="#">Tayana 55</a></li>
+                        <asp:Repeater ID="Repeater2" runat="server">
+                            <ItemTemplate>
+                                <li>
+                                    <li>
+                                        <a href="" id="hrefPage" runat="server">
+                                        <asp:Literal ID="menuItem" runat="server" Text='<%# "Eval("menuItem") %>'></asp:Literal></a>
+                                    </li>
+                                </li>
+                            </ItemTemplate>
+                        </asp:Repeater>
                     </ul>
                 </div>
             </div>
-            <div class="conbg">
+            
                 <!--------------------------------左邊選單結束---------------------------------------------------->
 
                 <!--------------------------------右邊選單開始---------------------------------------------------->
@@ -84,15 +95,19 @@
                 </div>
                 <!--------------------------------右邊選單結束---------------------------------------------------->
             </div>
-        <!--------------------------------落款開始---------------------------------------------------->
-        <div class="footer">
-            <p class="footerp01">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
-            <div class="footer01">
-                <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan, R.O.C.</span><br />
-                <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span><span><a href="mailto:tayangco@ms15.hinet.net">E-mail：tayangco@ms15.hinet.net</a>.</span>
+            <!--------------------------------落款開始---------------------------------------------------->
+            <div class="footer">
+                <div class="footerp00">
+                    <a href="http://www.tognews.com/" target="_blank">
+                        <p> <img src="images/tog.jpg" alt="TOG" /></p></a>
+                    <p class="footerp001">© 1973-2012 Tayana Yachts, Inc. All Rights Reserved</p>
+                </div>
+                <div class="footer01">
+                    <span>No. 60, Hai Chien Road, Chung Men Li, Lin Yuan District, Kaohsiung City, Taiwan,R.O.C.</span><br />
+                    <span>TEL：+886(7)641-2721</span> <span>FAX：+886(7)642-3193</span>
+                </div>
             </div>
-        </div>
-        <!--------------------------------落款結束---------------------------------------------------->
+            <!--------------------------------落款結束---------------------------------------------------->
         </div>
     </form>
 </body>
