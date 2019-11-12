@@ -94,6 +94,14 @@
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Tayana.Master.cs">
+      <DependentUpon>Tayana.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Tayana.Master.designer.cs">
+      <DependentUpon>Tayana.Master</DependentUpon>
+    </Compile>
+    <Content Include="App_Code\myFunction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="index.aspx.cs">
       <DependentUpon>index.aspx</DependentUpon>
@@ -251,6 +259,7 @@
     <None Include="packages.config" />
     <Content Include="sys\master.Master" />
     <Content Include="sys\members\checkID.ashx" />
+    <Content Include="Tayana.Master" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -259,7 +268,6 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\" />
     <Folder Include="NewFolder1\" />
   </ItemGroup>
   <PropertyGroup>

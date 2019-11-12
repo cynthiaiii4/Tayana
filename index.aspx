@@ -184,7 +184,7 @@
                                     <!--TOP標籤結束-->
                                     <div class="news02p1">
                                         <p class="news02p1img">
-                                            <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' runat="server" alt="&quot;&quot;" />
+                                            <img src='<%# "/sys/uploadfile/images/S"+ Eval("img") %>' runat="server" alt="&quot;&quot;" />
                                         </p>
                                     </div>
                                     <p class="news02p2">
