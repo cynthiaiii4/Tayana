@@ -60,7 +60,7 @@ namespace Tayan.sys
                 string userData = JsonConvert.SerializeObject(ticket);//將物件序列化
 
                 SetAuthenTicket(userData, username.Text);
-                Response.Redirect("index.aspx");
+                Response.Redirect("Bindex.aspx");
 
             }
             else

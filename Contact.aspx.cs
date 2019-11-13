@@ -65,5 +65,7 @@ namespace Tayan
             myFunction.SendGmailMail(fromAddress,toAddress,subject,message,pwd);
             Response.Redirect("Contact.aspx");
         }
+
+
     }
 }

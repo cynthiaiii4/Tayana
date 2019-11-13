@@ -54,6 +54,10 @@
                     <textarea name="Comments" id="Comments" cols="45" rows="5" runat="server"></textarea></td>
             </tr>
             <tr>
+                <td class="from01td01"></td>
+                <td>本網站採Google reCaptcha v3 驗證</td>
+            </tr>
+            <tr>
                 <td class="from01td01">&nbsp;</td>
                 <td class="f_right">
                     <asp:ImageButton ID="submitBTN" runat="server" OnClick="submitBTN_Click" ImageUrl="images/buttom03.gif"/>

@@ -69,6 +69,7 @@ namespace Tayan.sys.Dealers
 
         protected void add_Click(object sender, EventArgs e)
         {
+            check.Text = "";
             string ConnectionString = System.Web.Configuration.WebConfigurationManager
                 .ConnectionStrings["ConnectionString"].ToString();
             SqlConnection Connection = new SqlConnection(ConnectionString);

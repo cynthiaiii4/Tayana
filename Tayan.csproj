@@ -70,6 +70,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Company.aspx" />
+    <Content Include="Company1.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="css\csshover.htc" />
     <Content Include="css\homestyle.css" />
@@ -78,6 +80,9 @@
     <Content Include="css\js.css" />
     <Content Include="css\reset.css" />
     <Content Include="css\style.css" />
+    <Content Include="Dealers.aspx" />
+    <Content Include="NEWS_list.aspx" />
+    <Content Include="NEWS_view.aspx" />
     <Content Include="Scripts\AC_RunActiveContent.js" />
     <Content Include="Scripts\jquery-1.6.1.min.js" />
     <Content Include="Scripts\jquery.ad-gallery.js" />
@@ -93,7 +98,7 @@
     <Content Include="sys\members\addmember.aspx" />
     <Content Include="sys\Dealers\Dealers.aspx" />
     <Content Include="sys\members\Editmember.aspx" />
-    <Content Include="sys\index.aspx" />
+    <Content Include="sys\Bindex.aspx" />
     <Content Include="sys\login.aspx" />
     <Content Include="sys\members\members.aspx" />
     <Content Include="sys\NEWS\addNEWS.aspx" />
@@ -110,6 +115,20 @@
     <Content Include="index.aspx" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Company.aspx.cs">
+      <DependentUpon>Company.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company.aspx.designer.cs">
+      <DependentUpon>Company.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Company1.aspx.cs">
+      <DependentUpon>Company1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Company1.aspx.designer.cs">
+      <DependentUpon>Company1.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -118,6 +137,27 @@
       <DependentUpon>Contact.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\myFunction.cs" />
+    <Compile Include="Dealers.aspx.cs">
+      <DependentUpon>Dealers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Dealers.aspx.designer.cs">
+      <DependentUpon>Dealers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NEWS_list.aspx.cs">
+      <DependentUpon>NEWS_list.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NEWS_list.aspx.designer.cs">
+      <DependentUpon>NEWS_list.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NEWS_view.aspx.cs">
+      <DependentUpon>NEWS_view.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NEWS_view.aspx.designer.cs">
+      <DependentUpon>NEWS_view.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Tayana.Master.cs">
       <DependentUpon>Tayana.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -185,12 +225,12 @@
     <Compile Include="sys\members\Editmember.aspx.designer.cs">
       <DependentUpon>Editmember.aspx</DependentUpon>
     </Compile>
-    <Compile Include="sys\index.aspx.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="sys\Bindex.aspx.cs">
+      <DependentUpon>Bindex.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="sys\index.aspx.designer.cs">
-      <DependentUpon>index.aspx</DependentUpon>
+    <Compile Include="sys\Bindex.aspx.designer.cs">
+      <DependentUpon>Bindex.aspx</DependentUpon>
     </Compile>
     <Compile Include="sys\login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

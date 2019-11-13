@@ -50,7 +50,8 @@
                     <asp:Repeater ID="Repeater1" runat="server">
                         <ItemTemplate>
                             <li>
-                                <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' /></li>
+                                <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' />
+                            </li>
                         </ItemTemplate>
                     </asp:Repeater>
                 </ul>
@@ -63,18 +64,11 @@
             <div class="left">
 
                 <div class="left1">
-                    <p><span>YACHTS</span></p>
+                    <p>
+                        <asp:Label ID="MenuTitle" runat="server" ></asp:Label>
+                    </p>
                     <ul>
-                        <asp:Repeater ID="Repeater2" runat="server">
-                            <ItemTemplate>
-                                <li>
-                                    <li>
-                                        <a href="" id="hrefPage" runat="server">
-                                        <asp:Literal ID="menuItem" runat="server" Text='<%# "Eval("menuItem") %>'></asp:Literal></a>
-                                    </li>
-                                </li>
-                            </ItemTemplate>
-                        </asp:Repeater>
+                        <asp:Literal ID="MenuList" runat="server"></asp:Literal>
                     </ul>
                 </div>
             </div>
@@ -82,10 +76,17 @@
                 <!--------------------------------左邊選單結束---------------------------------------------------->
 
                 <!--------------------------------右邊選單開始---------------------------------------------------->
-                <div id="crumb"><a href="#">Home</a> >> <a href="#">Yachts</a> >> <a href="#"><span class="on1">Dynasty 72</span></a></div>
+                <div id="crumb">
+                    <a href="index.aspx">Home</a>
+                    <asp:Literal ID="progress" runat="server"></asp:Literal>
+                    <%-->> <a href="#"> <asp:Label ID="progress1" runat="server" Text="Label"></asp:Label></a> 
+                    >> <a href="#"><span class="on1"><asp:Label ID="progress2" runat="server" Text="Label"></asp:Label></span></a>--%>
+                </div>
                 <div class="right">
                     <div class="right1">
-                        <div class="title"><span>Dynasty 72</span></div>
+                        <div class="title">
+                            <asp:Label ID="rightTitle" runat="server" Text="Label"></asp:Label>
+                        </div>
 
                         <!--------------------------------內容開始---------------------------------------------------->
                         <asp:ContentPlaceHolder ID="ContentPlaceHolder2" runat="server">
