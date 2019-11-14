@@ -1,6 +1,42 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tayana.Master" AutoEventWireup="true" CodeBehind="YachtOverview.aspx.cs" Inherits="Tayan.Overview" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
+    <link rel="shortcut icon" href="favicon.ico" />
+   <%-- <link href="css/homestyle.css" rel="stylesheet" type="text/css" />
+    <link href="css/reset.css" rel="stylesheet" type="text/css" />--%>
+    <script type="text/javascript">
+        $(function () {
+            $('.topbuttom').click(function () {
+                $('html, body').scrollTop(0);
+
+            });
+
+        });
+    </script>
+    
+    <link rel="stylesheet" type="text/css" href="css/jquery.ad-gallery.css">
+    <style type="text/css"> img, div, input { behavior: url(""); } </style>
+    <script type="text/javascript" src="Scripts/jquery.ad-gallery.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            var galleries = $('.ad-gallery').adGallery();
+            galleries[0].settings.effect = 'fade';
+            if ($('.banner input[type=hidden]').val() == "0") {
+                $(".bannermasks").hide();
+                $(".banner").hide();
+                $("#crumb").css("top","125px");
+            }
+        });
+    </script>
+</asp:Content>
+<asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <asp:Repeater ID="Repeater2" runat="server">
+        <ItemTemplate>
+            <li><a href='<%#"/sys/uploadfile/images/S"+ Eval("img") %>' runat="server">
+                <img src='<%#"/sys/uploadfile/images/S"+ Eval("img") %>' class="image0" />
+            </a></li>
+        </ItemTemplate>
+    </asp:Repeater>
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
 

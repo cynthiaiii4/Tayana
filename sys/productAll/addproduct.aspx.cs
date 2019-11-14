@@ -39,6 +39,8 @@ namespace Tayan.sys.productAll
                 ifileName = String.Format("{0:yyyyMMddhhmmsss}.{1}", DateTime.Now, Extension);
                 //上傳目錄為/upload/Images/
                 indexImg.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/images/{0}", ifileName)));
+                myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "S", 200, 63);
+                myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "B", 967, 449);
 
             }
             #endregion
@@ -65,6 +67,8 @@ namespace Tayan.sys.productAll
                     fileName.Add(singlefile);
                     //上傳目錄為/Images/
                     images.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/images/{0}", singlefile)));
+                    myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "63", 200, 63);
+                    myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "449", 967, 449);
                     i++;
                 }
 

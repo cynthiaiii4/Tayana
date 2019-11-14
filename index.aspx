@@ -107,7 +107,7 @@
                             <asp:Repeater ID="Repeater1" runat="server">
                                 <ItemTemplate>
                                     <li class="info on"><a href="#">
-                                        <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' runat="server" /></a><!--文字開始--><div class="wordtitle">
+                                        <img src='<%# "/sys/uploadfile/images/B"+ Eval("img") %>' runat="server" /></a><!--文字開始--><div class="wordtitle">
                                             <asp:Literal ID="Literal1" runat="server" Text='<%# Bind("series") %>'></asp:Literal>
                                             <span><asp:Literal ID="Literal2" runat="server" Text='<%# Bind("number") %>'></asp:Literal></span><br />
                                             <p>SPECIFICATION SHEET</p>
@@ -142,7 +142,7 @@
                                         <li class="on">
                                             <div>
                                                 <p class="bannerimg_p">
-                                                    <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' runat="server" alt="&quot;&quot;" />
+                                                    <img src='<%# "/sys/uploadfile/images/S"+ Eval("img") %>' runat="server" alt="&quot;&quot;" />
                                                 </p>
                                             </div>
                                     </ItemTemplate>

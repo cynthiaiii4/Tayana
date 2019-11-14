@@ -28,10 +28,23 @@ namespace Tayan
                 .ConnectionString;
             SqlConnection Connection = new SqlConnection(commansString);
             //抓最新一筆
-            SqlCommand command2 = new SqlCommand($"SELECT TOP 1 id FROM products ORDER BY id desc SELECT SCOPE_IDENTITY()", Connection);
+            SqlCommand command3 = new SqlCommand($"SELECT TOP 1 id FROM products ORDER BY id desc SELECT SCOPE_IDENTITY()", Connection);
             Connection.Open();
-            string nid = command2.ExecuteScalar().ToString();
+            string nid = command3.ExecuteScalar().ToString();
             Connection.Close();
+
+            #region 輪播照片
+            SqlCommand command2 = new SqlCommand($"SELECT * FROM images WHERE productID=@id", Connection);
+            command2.Parameters.Add("@id", SqlDbType.NVarChar);
+            command2.Parameters["@id"].Value = Request.QueryString["id"] ?? nid;
+            SqlDataAdapter dataAdapter2 = new SqlDataAdapter(command2);
+            DataTable dataTable2 = new DataTable();
+            dataAdapter2.Fill(dataTable2);
+            Repeater2.DataSource = dataTable2;
+            Repeater2.DataBind();
+
+
+            #endregion
 
             //SHOW資料
             SqlCommand command1 = new SqlCommand($"SELECT * FROM products WHERE id=@id ", Connection);
@@ -58,6 +71,8 @@ namespace Tayan
 
             subMenu.Text = subMenuString.ToString();
             Connection.Close();
+
+            
 
             #region 檔案
             SqlCommand command = new SqlCommand($"SELECT * FROM downloads WHERE productID=@id", Connection);

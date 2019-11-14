@@ -20,7 +20,7 @@
                         <li>
                             <div>
                                 <p>
-                                    <asp:Image ID="NEWSImg" runat="server" src='<%# "/sys/uploadfile/images/"+Eval("img") %>'/>
+                                    <asp:Image ID="NEWSImg" runat="server" src='<%# "/sys/uploadfile/images/S"+Eval("img") %>'/>
                                 </p>
                             </div>
                         </li>

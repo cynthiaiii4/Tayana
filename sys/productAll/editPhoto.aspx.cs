@@ -180,6 +180,8 @@ namespace Tayan.sys.productAll
                     fileName.Add(singlefile);
                     //上傳目錄為/Images/
                     images.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/images/{0}", singlefile)));
+                    myFunction.GenerateThumbnailImage(singlefile, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "S", 200, 63);
+                    myFunction.GenerateThumbnailImage(singlefile, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "B", 967, 449);
                     i++;
                 }
 

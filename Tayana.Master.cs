@@ -23,7 +23,7 @@ namespace Tayan
             switch (hiddenyo.Value)
             {
                 case "001":
-                    //topImg.Src = "/images/DEALERS.jpg";
+                    topImg.Src = "/images/banner01_masks.png";
                     MenuTitle.Text = "YACHTS";
                     commandString = "SELECT id,series,number from products ORDER BY id desc";
                     SqlCommand Command = new SqlCommand(commandString, connection);

@@ -7,7 +7,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title></title>
     <script type="text/javascript" src="/Scripts/jquery.min.js"></script>
-    <script type="text/javascript" src="/Scripts/jquery.cycle.all.2.74.js"></script>
+   <%-- <script type="text/javascript" src="/Scripts/jquery.cycle.all.2.74.js"></script>--%>
     <link href="/css/homestyle.css" rel="stylesheet" type="text/css" />
     <link href="/css/reset.css" rel="stylesheet" type="text/css" />
 
@@ -38,11 +38,20 @@
                 <img alt="&quot;&quot;" width="967" height="371" runat="server" id="topImg" />
             </div>
             <!--遮罩結束-->
-
-            <!--小圖-->
-            <div class="bannerimg">
-
-                <ul>
+            <div class="banner1">
+                <input type="hidden" name="ctl00$ContentPlaceHolder1$Gallery1$HiddenField1" id="ctl00_ContentPlaceHolder1_Gallery1_HiddenField1" value="1" />
+                <div id="gallery" class="ad-gallery">
+                    <div class="ad-image-wrapper">
+                    </div>
+                    <div class="ad-controls">
+                    </div>
+                    <div class="ad-nav">
+                        <div class="ad-thumbs">
+                            <!--小圖-->
+                            <ul class="ad-thumb-list">
+                                <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+                                </asp:ContentPlaceHolder>
+                                <%--<ul>
                     <li><a class="on" href="#">
                         <p class="bannerimg_p">
                             <img src='<%# Eval("img") %>' alt="&quot;&quot;" id="firstImg"/></p>
@@ -68,23 +77,27 @@
                                     <img src='<%# Eval("img") %>' alt="&quot;&quot;" id="otherImg"/></p>
                             </a></li>
                         </ItemTemplate>
-                    </asp:Repeater>
-                </ul>
+                    </asp:Repeater>--%>
+                            </ul>
 
-            </div>
-            <!--小圖結束
+                        </div>
+                        <!--小圖結束
 
             <!--換圖開始-->
-            <div class="banner">
-                <ul>
-                    <asp:Repeater ID="Repeater1" runat="server">
-                        <ItemTemplate>
-                            <li>
-                                <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' />
-                            </li>
-                        </ItemTemplate>
-                    </asp:Repeater>
-                </ul>
+                        <%--<div class="banner">
+                            <ul>
+                                <asp:Repeater ID="Repeater1" runat="server">
+                                    <ItemTemplate>
+                                        <li>
+                                            <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' />
+                                        </li>
+                                    </ItemTemplate>
+                                </asp:Repeater>
+                            </ul>
+
+                        </div>--%>
+                    </div>
+                </div>
 
             </div>
             <!--換圖結束-->
