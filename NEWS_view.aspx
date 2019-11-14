@@ -15,23 +15,29 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="ContentPlaceHolder2" runat="server">
     <div class="box3">
-        <h4>The Luxury Tayana 48 Pilothouse Lavish Woodwork Is Among</h4>
-        <p><img src="images/pit009.jpg" alt="&quot;&quot;" /></p>
-        On Display at the Seattle Boats Afloat Show, Lake Union, January 25 - February 3, 2007
-        The luxury Tayana 48 Pilothouse is the perfect boat for the Northwest Cruiser or, for that matter, anywhere in the world. Designed for minimal exterior maintenance, and equipped for maximun creature comforts and ease of sailing. Enjoy aft cockpit sailing with comfortable seating for nice weather cruising or duck inside and sail from the inside steering station when it is gnarly out. Large salon windows with a pair of overhead hatches give the skipper plenty of visibility to see all around as well as up to check sail shape and trim. </div>
-
+        <h4>
+            <asp:Literal ID="title" runat="server"></asp:Literal></h4>
+            <asp:Label ID="content" runat="server" Text="Label"></asp:Label>
     <!--下載開始-->
     <div class="downloads">
-        <p><img src="images/downloads.gif" alt="&quot;&quot;" /></p>
+        <p><img src="images/downloads.gif" alt="&quot;&quot;" style="border:0px;"/></p>
         <ul>
+            <asp:Repeater ID="Repeater1" runat="server">
+                <ItemTemplate>
+                    <li>
+                        <asp:HyperLink ID="download" runat="server" NavigateUrl='<%#"/sys/files/"+Eval("filename") %>' Target="_blank">
+                            <asp:Literal ID="downloadName" runat="server" Text='<%#Eval("showname") %>'></asp:Literal></asp:HyperLink>
+                    </li>
+                </ItemTemplate>
+            </asp:Repeater>
+            
+            <%--<li><a href="#">Downloads 001</a></li>
             <li><a href="#">Downloads 001</a></li>
             <li><a href="#">Downloads 001</a></li>
-            <li><a href="#">Downloads 001</a></li>
-            <li><a href="#">Downloads 001</a></li>
-            <li><a href="#">Downloads 001</a></li>
+            <li><a href="#">Downloads 001</a></li>--%>
         </ul> 
     </div>
     <!--下載結束-->
 
-    <div class="buttom001"><a href="#"><img src="images/back.gif" alt="&quot;&quot;" width="55" height="28" /></a></div>
+    <div class="buttom001"><a href="NEWS_list.aspx"><img src="images/back.gif" alt="&quot;&quot;" width="55" height="28" /></a></div>
 </asp:Content>

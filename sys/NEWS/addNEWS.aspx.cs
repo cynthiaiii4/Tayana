@@ -7,6 +7,7 @@ using System.Drawing.Drawing2D;
 using System.IO;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 
@@ -70,7 +71,7 @@ namespace Tayan.sys.NEWS
                 #region 寫入主表
                 SqlCommand Command =
                     new SqlCommand(
-                        $"INSERT INTO news(title,summary,img,newsContent,topNews) VALUES(@title,@summary,@img,@newsContent,@topNews)",
+                        $"INSERT INTO news(title,summary,img,newsContent,topNews) VALUES(@title,@summary,@img,@newsContent,@topNews) SELECT SCOPE_IDENTITY()",
                         Connection);
                 Command.Parameters.Add("@title", SqlDbType.NVarChar);
                 Command.Parameters["@title"].Value = title.Value;
@@ -90,11 +91,44 @@ namespace Tayan.sys.NEWS
                     Command.Parameters["@topNews"].Value = false;
                 }
                 
-
                 Connection.Open();
-                Command.ExecuteNonQuery();
+                int nid = Convert.ToInt32(Command.ExecuteScalar());
+                //加密
+                //SqlCommand Command1 = new SqlCommand($"UPDATE news SET uid=@uid", Connection);
+                //Command1.Parameters.Add("@uid", SqlDbType.NVarChar);
+                //Command1.Parameters["@uid"].Value = FormsAuthentication.HashPasswordForStoringInConfigFile(nid.ToString(), "MD5");
+                //Command1.ExecuteNonQuery();
                 Connection.Close();
-
+                //寫入其他檔案
+                if (FileUpload1.HasFile)
+                {
+                    int i = 1;
+                    foreach (var item in FileUpload1.PostedFiles)
+                    {
+                        //取得副檔名
+                        string Extension = Path.GetExtension(item.FileName);
+                        //取得原檔名
+                        string itemname = Path.GetFileName(item.FileName);
+                        //新檔案名稱
+                        string ofileName = String.Format("N{0:yyyyMMddhhmmsss}-{1}{2}", DateTime.Now, i, Extension);
+                        //上傳目錄為/upload/Images/
+                        FileUpload1.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/files/{0}", ofileName)));
+                        i++;
+                        SqlCommand oCommand =
+                            new SqlCommand(
+                                $"INSERT INTO newsDownloads(newsId,filename,showname) VALUES(@newsId,@filename,@showname) ",
+                                Connection);
+                        oCommand.Parameters.Add("@newsId", SqlDbType.NVarChar);
+                        oCommand.Parameters["@newsId"].Value = nid;
+                        oCommand.Parameters.Add("@filename", SqlDbType.NVarChar);
+                        oCommand.Parameters["@filename"].Value = ofileName;
+                        oCommand.Parameters.Add("@showname", SqlDbType.NVarChar);
+                        oCommand.Parameters["@showname"].Value = itemname;
+                        Connection.Open();
+                        oCommand.ExecuteNonQuery();
+                        Connection.Close();
+                    }
+                }
                 #endregion
 
                 Response.Redirect("~/sys/NEWS/NEWS.aspx");

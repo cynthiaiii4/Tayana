@@ -10,16 +10,16 @@
 namespace Tayan {
     
     
-    public partial class NEWS_view {
+    public partial class Specification {
         
         /// <summary>
-        /// title 控制項。
+        /// subMenu 控制項。
         /// </summary>
         /// <remarks>
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal title;
+        protected global::System.Web.UI.WebControls.Literal subMenu;
         
         /// <summary>
         /// content 控制項。
@@ -28,15 +28,6 @@ namespace Tayan {
         /// 自動產生的欄位。
         /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label content;
-        
-        /// <summary>
-        /// Repeater1 控制項。
-        /// </summary>
-        /// <remarks>
-        /// 自動產生的欄位。
-        /// 若要修改，請將欄位宣告從設計工具檔案移到程式碼後置檔案。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Repeater Repeater1;
+        protected global::System.Web.UI.WebControls.Literal content;
     }
 }

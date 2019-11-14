@@ -10,7 +10,7 @@
     <script type="text/javascript" src="/Scripts/jquery.cycle.all.2.74.js"></script>
     <link href="/css/homestyle.css" rel="stylesheet" type="text/css" />
     <link href="/css/reset.css" rel="stylesheet" type="text/css" />
-   
+
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 </head>
@@ -19,29 +19,59 @@
         <asp:HiddenField ID="hiddenyo" runat="server" />
         <div class="contain">
             <div class="sub">
-                <p><a href="#">Home</a></p>
+                <p><a href="index.aspx">Home</a></p>
             </div>
 
             <!--------------------------------選單開始---------------------------------------------------->
             <div class="menu">
                 <ul>
-                    <li class="menuli01"><a href="#">Yachts</a></li>
-                    <li class="menuli02"><a href="#">NEWS</a></li>
-                    <li class="menuli03"><a href="#">COMPANY</a></li>
-                    <li class="menuli04"><a href="#">DEALERS</a></li>
-                    <li class="menuli05"><a href="#">CONTACT</a></li>
+                    <li class="menuli01"><a href="YachtOverview.aspx">Yachts</a></li>
+                    <li class="menuli02"><a href="NEWS_list.aspx">NEWS</a></li>
+                    <li class="menuli03"><a href="Company.aspx">COMPANY</a></li>
+                    <li class="menuli04"><a href="Dealers.aspx">DEALERS</a></li>
+                    <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
                 </ul>
             </div>
             <!--------------------------------選單開始結束---------------------------------------------------->
             <!--遮罩-->
             <div class="bannermasks">
-                <img alt="&quot;&quot;" width="967" height="371" runat="server" id="topImg"/>
+                <img alt="&quot;&quot;" width="967" height="371" runat="server" id="topImg" />
             </div>
             <!--遮罩結束-->
 
             <!--小圖-->
-            <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
-            </asp:ContentPlaceHolder>
+            <div class="bannerimg">
+
+                <ul>
+                    <li><a class="on" href="#">
+                        <p class="bannerimg_p">
+                            <img src='<%# Eval("img") %>' alt="&quot;&quot;" id="firstImg"/></p>
+                    </a></li>
+                    <asp:Repeater ID="Repeater2" runat="server">
+                        <ItemTemplate>
+                            <li><a href="#">
+                                <p class="bannerimg_p">
+                                    <img src='<%# Eval("img") %>' alt="&quot;&quot;" id="otherImg"/></p>
+                            </a></li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+                <ul>
+                    <li><a class="on" href="#">
+                        <p class="bannerimg_p">
+                            <img src='<%# Eval("img") %>' alt="&quot;&quot;" id="firstImg"/></p>
+                    </a></li>
+                    <asp:Repeater ID="Repeater3" runat="server">
+                        <ItemTemplate>
+                            <li><a href="#">
+                                <p class="bannerimg_p">
+                                    <img src='<%# Eval("img") %>' alt="&quot;&quot;" id="otherImg"/></p>
+                            </a></li>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </ul>
+
+            </div>
             <!--小圖結束
 
             <!--換圖開始-->
@@ -59,20 +89,20 @@
             </div>
             <!--換圖結束-->
             <div class="conbg">
-            <!--------------------------------左邊選單開始---------------------------------------------------->
-            
-            <div class="left">
+                <!--------------------------------左邊選單開始---------------------------------------------------->
 
-                <div class="left1">
-                    <p>
-                        <asp:Label ID="MenuTitle" runat="server" ></asp:Label>
-                    </p>
-                    <ul>
-                        <asp:Literal ID="MenuList" runat="server"></asp:Literal>
-                    </ul>
+                <div class="left">
+
+                    <div class="left1">
+                        <p>
+                            <asp:Label ID="MenuTitle" runat="server"></asp:Label>
+                        </p>
+                        <ul>
+                            <asp:Literal ID="MenuList" runat="server"></asp:Literal>
+                        </ul>
+                    </div>
                 </div>
-            </div>
-            
+
                 <!--------------------------------左邊選單結束---------------------------------------------------->
 
                 <!--------------------------------右邊選單開始---------------------------------------------------->
@@ -100,7 +130,10 @@
             <div class="footer">
                 <div class="footerp00">
                     <a href="http://www.tognews.com/" target="_blank">
-                        <p> <img src="images/tog.jpg" alt="TOG" /></p></a>
+                        <p>
+                            <img src="images/tog.jpg" alt="TOG" />
+                        </p>
+                    </a>
                     <p class="footerp001">© 1973-2012 Tayana Yachts, Inc. All Rights Reserved</p>
                 </div>
                 <div class="footer01">

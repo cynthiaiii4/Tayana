@@ -23,10 +23,28 @@ namespace Tayan
             switch (hiddenyo.Value)
             {
                 case "001":
-
+                    //topImg.Src = "/images/DEALERS.jpg";
+                    MenuTitle.Text = "YACHTS";
+                    commandString = "SELECT id,series,number from products ORDER BY id desc";
+                    SqlCommand Command = new SqlCommand(commandString, connection);
+                    SqlDataAdapter DataAdapter = new SqlDataAdapter(Command);
+                    DataTable dataTable1 = new DataTable();
+                    DataAdapter.Fill(dataTable1);
+                    progressS += @">> <a href=""YachtOverview.aspx"">Yachts</a>";
+                    foreach (DataRow row in dataTable1.Rows)
+                    {
+                        list.Append(@"<li><a href=""YachtOverview.aspx?id=" + row[0]+ @""">" + row[1]+" "+row[2]+ "</a></li>");
+                        if (row[0].ToString() == Request.QueryString["id"])
+                        {
+                            rightTitle.Text = row[1].ToString();
+                            progressS += @">> <span class=""on1""><a href=""YachtOverview.aspx?id=" + Request.QueryString["id"] + @""">" + row[1] + "</span></a>";
+                        }
+                    }
+                    MenuList.Text = list.ToString();
+                    progress.Text = progressS;
                     return;
                 case "002":
-                    topImg.Src = "/images/NEWS_list.png";
+                    topImg.Src = "/images/newsbanner.jpg";
                     MenuTitle.Text = "NEWS";
                     list.Append(@"<li><a href=""NEWS_list.aspx"">News & Events</a></li>");
                     MenuList.Text = list.ToString();

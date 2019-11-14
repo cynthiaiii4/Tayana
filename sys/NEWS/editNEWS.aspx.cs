@@ -24,6 +24,7 @@ namespace Tayan.sys.NEWS
 
         public void showData()
         {
+            #region 內容
             string EdiAcount = System.Web.Configuration.WebConfigurationManager
                 .ConnectionStrings["ConnectionString"].ToString();
             SqlConnection editConnection = new SqlConnection(EdiAcount);
@@ -44,10 +45,61 @@ namespace Tayan.sys.NEWS
             {
                 topNews.Checked = true;
             }
-            
-            editConnection.Close();
-        }
 
+            editConnection.Close();
+            #endregion
+
+            #region 檔案
+            SqlCommand Command =
+                new SqlCommand($" Select id,showname, filename from newsDownloads where newsId=@Eid", editConnection);
+            Command.Parameters.Add("@Eid", SqlDbType.NVarChar);
+            Command.Parameters["@Eid"].Value = Request.QueryString["id"];
+            SqlDataAdapter dataAdapter=new SqlDataAdapter(Command);
+            DataTable dataTable=new DataTable();
+            dataAdapter.Fill(dataTable);
+            GridView2.DataSource = dataTable;
+            GridView2.DataBind();
+
+            #endregion
+        }
+        protected void uploadfile_Click(object sender, EventArgs e)
+        {
+            //清空提示語
+            check.Text = "";
+            string ConnectionString = System.Web.Configuration.WebConfigurationManager
+                .ConnectionStrings["ConnectionString"].ToString();
+            SqlConnection Connection = new SqlConnection(ConnectionString);
+            if (FileUpload1.HasFile)
+            {
+                int i = 1;
+                foreach (var item in FileUpload1.PostedFiles)
+                {
+                    //取得副檔名
+                    string Extension = Path.GetExtension(item.FileName);
+                    //取得原檔名
+                    string itemname = Path.GetFileName(item.FileName);
+                    //新檔案名稱
+                    string ofileName = String.Format("N{0:yyyyMMddhhmmsss}-{1}{2}", DateTime.Now, i, Extension);
+                    //上傳目錄為/upload/Images/
+                    FileUpload1.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/files/{0}", ofileName)));
+                    i++;
+                    SqlCommand oCommand =
+                        new SqlCommand(
+                            $"INSERT INTO newsDownloads(newsId,filename,showname) VALUES(@newsId,@filename,@showname) ",
+                            Connection);
+                    oCommand.Parameters.Add("@newsId", SqlDbType.NVarChar);
+                    oCommand.Parameters["@newsId"].Value = Request.QueryString["id"];
+                    oCommand.Parameters.Add("@filename", SqlDbType.NVarChar);
+                    oCommand.Parameters["@filename"].Value = ofileName;
+                    oCommand.Parameters.Add("@showname", SqlDbType.NVarChar);
+                    oCommand.Parameters["@showname"].Value = itemname;
+                    Connection.Open();
+                    oCommand.ExecuteNonQuery();
+                    Connection.Close();
+                }
+            }
+            showData();
+        }
         protected void save_Click(object sender, EventArgs e)
         {
             #region 圖片判斷式
@@ -131,7 +183,19 @@ namespace Tayan.sys.NEWS
             }
 
         }
+        protected void GridView2_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            string Rid = GridView2.DataKeys[e.RowIndex].Value.ToString();
+            string sql1 = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnectionString"]
+                .ConnectionString;
+            SqlConnection memberConnection = new SqlConnection(sql1);//建立連線通道
+            SqlCommand deletecommand = new SqlCommand($" Delete from newsDownloads where id={Rid}", memberConnection);
 
+            memberConnection.Open();
+            deletecommand.ExecuteNonQuery();
+            memberConnection.Close();
+            showData();
+        }
         protected void cancel_Click(object sender, EventArgs e)
         {
             string page = Request["page"] ?? "1";

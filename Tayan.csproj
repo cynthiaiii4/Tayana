@@ -81,8 +81,10 @@
     <Content Include="css\reset.css" />
     <Content Include="css\style.css" />
     <Content Include="Dealers.aspx" />
+    <Content Include="YachtLayout.aspx" />
     <Content Include="NEWS_list.aspx" />
     <Content Include="NEWS_view.aspx" />
+    <Content Include="YachtOverview.aspx" />
     <Content Include="Scripts\AC_RunActiveContent.js" />
     <Content Include="Scripts\jquery-1.6.1.min.js" />
     <Content Include="Scripts\jquery.ad-gallery.js" />
@@ -91,6 +93,7 @@
     <Content Include="Scripts\jquery.event.hover-1.0.js" />
     <Content Include="Scripts\jquery.min.js" />
     <Content Include="Scripts\jquery.timers.js" />
+    <Content Include="YachtSpecification.aspx" />
     <Content Include="sys\Dealers\Area.aspx" />
     <Content Include="sys\Dealers\addDealer.aspx" />
     <Content Include="sys\Dealers\editDealer.aspx" />
@@ -111,6 +114,7 @@
     <Content Include="sys\productAll\editproduct.aspx" />
     <Content Include="sys\productAll\products.aspx" />
     <Content Include="sys\productAll\productsF.aspx" />
+    <Content Include="YachtVideo.aspx" />
     <Content Include="Web.config" />
     <Content Include="index.aspx" />
   </ItemGroup>
@@ -144,6 +148,13 @@
     <Compile Include="Dealers.aspx.designer.cs">
       <DependentUpon>Dealers.aspx</DependentUpon>
     </Compile>
+    <Compile Include="YachtLayout.aspx.cs">
+      <DependentUpon>YachtLayout.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YachtLayout.aspx.designer.cs">
+      <DependentUpon>YachtLayout.aspx</DependentUpon>
+    </Compile>
     <Compile Include="NEWS_list.aspx.cs">
       <DependentUpon>NEWS_list.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -157,6 +168,20 @@
     </Compile>
     <Compile Include="NEWS_view.aspx.designer.cs">
       <DependentUpon>NEWS_view.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YachtOverview.aspx.cs">
+      <DependentUpon>YachtOverview.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YachtOverview.aspx.designer.cs">
+      <DependentUpon>YachtOverview.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="YachtSpecification.aspx.cs">
+      <DependentUpon>YachtSpecification.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YachtSpecification.aspx.designer.cs">
+      <DependentUpon>YachtSpecification.aspx</DependentUpon>
     </Compile>
     <Compile Include="Tayana.Master.cs">
       <DependentUpon>Tayana.Master</DependentUpon>
@@ -317,6 +342,13 @@
       <DependentUpon>productsF.aspx</DependentUpon>
     </Compile>
     <Compile Include="sys\ticket.cs" />
+    <Compile Include="YachtVideo.aspx.cs">
+      <DependentUpon>YachtVideo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="YachtVideo.aspx.designer.cs">
+      <DependentUpon>YachtVideo.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

@@ -42,7 +42,14 @@
                                     <script>CKEDITOR.replace("newsContent");</script>
                                 </div>
                             </div>
-
+                            <div class="form-group ">
+                                <label for="img" class="control-label col-lg-2">
+                                    相關附件
+                                </label>
+                                <div class="col-lg-10">
+                                    <asp:FileUpload ID="FileUpload1" runat="server" class="form-control "  ClientIDMode="Static" AllowMultiple="True"/>
+                                </div>
+                            </div>
 
                             <div class="form-group">
                                 <div class="col-lg-offset-2 col-lg-10">
