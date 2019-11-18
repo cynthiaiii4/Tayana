@@ -27,7 +27,7 @@
                 <asp:Button ID="clear" runat="server" Text="清除搜尋條件" OnClick="clear_Click" />
                 <hr/>
 
-                <asp:GridView ID="GridView1" CssClass="table table-striped table-advance table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" GridLines="None" >
+                <asp:GridView ID="GridView1" CssClass="table table-striped table-advance table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="GridView1_RowDeleting" OnRowEditing="GridView1_RowEditing" GridLines="None" OnRowDataBound="GridView1_OnRowDataBound">
                     <Columns >
                         <asp:BoundField DataField="RowNumber" HeaderText="項次" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                         <asp:BoundField DataField="title" HeaderText="標題" SortExpression="newsTitle" />
@@ -37,7 +37,7 @@
                                 <asp:Image ImageUrl='<%# "/sys/uploadfile/images/"+Eval("img") %>' ID="Image1"  runat="server" style="width: 150px"/>
                             </ItemTemplate>
                         </asp:TemplateField>
-                        <asp:BoundField DataField="topNews" HeaderText="置頂" SortExpression="topNews" />
+                        <asp:BoundField DataField="topNews" HeaderText="是否置頂" SortExpression="topNews" />
                         <asp:TemplateField>
                             
                             <ItemTemplate>

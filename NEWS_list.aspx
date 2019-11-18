@@ -5,6 +5,12 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link href="sys/PageControl.css" rel="stylesheet" />
+  <style>
+      .list01 .newsp p {
+          width: 50%;
+      }
+       
+  </style>
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 </asp:Content>
@@ -20,7 +26,7 @@
                         <li>
                             <div>
                                 <p>
-                                    <asp:Image ID="NEWSImg" runat="server" src='<%# "/sys/uploadfile/images/S"+Eval("img") %>'/>
+                                    <asp:Image ID="NEWSImg" runat="server" src='<%# "/sys/uploadfile/images/L"+Eval("img") %>'/>
                                 </p>
                             </div>
                         </li>
@@ -28,8 +34,10 @@
                             <asp:HyperLink ID="NewsLink" runat="server" NavigateUrl='<%#"NEWS_view.aspx?id="+ Eval("id") %>'>
                                 <asp:Literal ID="title" runat="server" Text='<%# Bind("title") %>'></asp:Literal></asp:HyperLink>
                         <br />
-                        <li><asp:Literal ID="summary" runat="server" Text='<%# Eval("summary").ToString().Length>50?Eval("summary").ToString().Substring(0,30)+"...":Eval("summary") %>'
+                        <li class="newsp"><asp:Literal ID="summary" runat="server" Text='<%# Eval("summary") %>'
                                          ></asp:Literal></li>
+                        <%--<li class="newsp"><asp:Literal ID="Literal1" runat="server" Text='<%# Eval("summary").ToString().Length>50?Eval("summary").ToString().Substring(0,30)+"...":Eval("summary") %>'
+                                          ></asp:Literal></li>--%>
                     </ul>
                 </div>
             </li>

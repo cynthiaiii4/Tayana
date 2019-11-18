@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tayana.Master" AutoEventWireup="true" CodeBehind="YachtOverview.aspx.cs" Inherits="Tayan.Overview" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Tayana.Master" AutoEventWireup="true" CodeBehind="YachtOverview.aspx.cs" Inherits="Tayan.Overview" ValidateRequest="false" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <link rel="shortcut icon" href="favicon.ico" />
@@ -32,7 +32,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <asp:Repeater ID="Repeater2" runat="server">
         <ItemTemplate>
-            <li><a href='<%#"/sys/uploadfile/images/S"+ Eval("img") %>' runat="server">
+            <li><a href='<%#"/sys/uploadfile/images/"+ Eval("img") %>' runat="server">
                 <img src='<%#"/sys/uploadfile/images/S"+ Eval("img") %>' class="image0" />
             </a></li>
         </ItemTemplate>
@@ -72,4 +72,17 @@
         </ul>
     </div>
     <!--下載結束-->
+    <style>
+        .ad-controls {
+            display: none;
+        }
+        .ad-gallery .ad-image-wrapper {
+            height:355px;
+        }
+        .ad-gallery .ad-nav {
+            top: 482px;
+        }
+    </style>
 </asp:Content>
+
+

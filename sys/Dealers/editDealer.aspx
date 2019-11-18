@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="form-panel">
                     <div class="form">
-                        <form class="cmxform form-horizontal style-form" id="signupForm" method="get" action="">
+                        <form class="cmxform form-horizontal style-form" id="signupForm" method="get" >
                             <div class="form-group ">
                                 <label for="title" class="control-label col-lg-2">地區</label>
                                 <div class="col-lg-10">
@@ -39,11 +39,19 @@
                             </div>
                             <div class="form-group ">
                                 <label for="dealerInfo" class="control-label col-lg-2">
-                                    經銷商資訊<br>
+                                    經銷商資訊<br/>
                                     (可拖拉改變編輯框大小)</label>
                                 <div class="col-lg-10">
                                     <textarea id="dealerInfo" clientidmode="Static" runat="server" required=""></textarea>
-                                    <script>CKEDITOR.replace("dealerInfo");</script>
+                                    <script>CKEDITOR.replace("dealerInfo",
+    {
+        filebrowserBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+    });</script>
                                 </div>
                             </div>
                             <div class="form-group">

@@ -55,4 +55,5 @@ C:\Users\user\Desktop\workspace\Csharp\Tayan\Tayan\obj\Debug\Tayan.dll
 C:\Users\user\Desktop\workspace\Csharp\Tayan\Tayan\obj\Debug\Tayan.pdb
 C:\Users\user\Desktop\workspace\Csharp\Tayan\Tayan\bin\Newtonsoft.Json.dll
 C:\Users\user\Desktop\workspace\Csharp\Tayan\Tayan\bin\Newtonsoft.Json.xml
+C:\Users\user\Desktop\workspace\Csharp\Tayan\Tayan\bin\CKFinder.dll
 C:\Users\user\Desktop\workspace\Csharp\Tayan\Tayan\obj\Debug\Tayan.csprojAssemblyReference.cache

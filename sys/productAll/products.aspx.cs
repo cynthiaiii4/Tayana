@@ -68,9 +68,12 @@ namespace Tayan.sys.productAll
                 .ConnectionString;
             SqlConnection memberConnection = new SqlConnection(sql1);//建立連線通道
             SqlCommand deletecommand = new SqlCommand($" Delete from products where id={Rid}", memberConnection);
-
+            SqlCommand deletecommand1 = new SqlCommand($" Delete from images where productID={Rid}", memberConnection);
+            SqlCommand deletecommand2 = new SqlCommand($" Delete from downloads where productID={Rid}", memberConnection);
             memberConnection.Open();
             deletecommand.ExecuteNonQuery();
+            deletecommand1.ExecuteNonQuery();
+            deletecommand2.ExecuteNonQuery();
             memberConnection.Close();
             showData();
         }

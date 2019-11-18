@@ -17,7 +17,7 @@
                     </div>
                     <asp:Label ID="check" runat="server" ForeColor="Red"></asp:Label>
                    
-                    <asp:GridView ID="GridView1" CssClass="table table-striped table-advance table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="GridView1_RowDeleting"  GridLines="None"  OnRowCommand="GridView1_RowCommand" OnRowDataBound="GridView1_OnRowDataBound">
+                    <asp:GridView ID="GridView1" CssClass="table table-striped table-advance table-hover"  runat="server" AutoGenerateColumns="False" DataKeyNames="id" OnRowDeleting="GridView1_RowDeleting"  GridLines="None"  OnRowCommand="GridView1_RowCommand" OnRowDataBound="GridView1_OnRowDataBound">
                         <Columns>
                             <asp:BoundField DataField="id" HeaderText="id" InsertVisible="False" ReadOnly="True" SortExpression="id" />
                             <asp:TemplateField HeaderText="照片">
@@ -37,7 +37,8 @@
                             </asp:TemplateField>
                         </Columns>
                     </asp:GridView>
-                    <h4><i class="fa fa-angle-right"></i>檔案列表</h4>
+                    <br/>
+                    <h4 style="padding-top: 30px;"><i class="fa fa-angle-right"></i>檔案列表</h4>
                     <hr />
                     <div class="form-group ">
                         <label for="files" class="control-label col-lg-2">附件檔案<br/>(總大小限制為4MB)</label>

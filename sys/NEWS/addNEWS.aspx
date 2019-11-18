@@ -10,7 +10,7 @@
             <div class="col-lg-12">
                 <div class="form-panel">
                     <div class="form">
-                        <form class="cmxform form-horizontal style-form" id="signupForm" method="get" action="">
+                        <form class="cmxform form-horizontal style-form" id="signupForm" method="get" >
                             <div class="form-group ">
                                 <label for="title" class="control-label col-lg-2">標題</label>
                                 <div class="col-lg-10">
@@ -26,20 +26,36 @@
                                 </div>
                             </div>
                             <div class="form-group ">
-                                <label for="summary" class="control-label col-lg-2">摘要<br>
+                                <label for="summary" class="control-label col-lg-2">摘要<br/>
                                     (可拖拉改變編輯框大小)</label>
                                 <div class="col-lg-10">
                                     <textarea id="summary" clientidmode="Static" runat="server" required=""></textarea>
-                                    <script>CKEDITOR.replace("summary");</script>
+                                    <script>CKEDITOR.replace("summary",
+    {
+        filebrowserBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+    });</script>
                                 </div>
                             </div>
 
                             <div class="form-group ">
-                                <label for="newsContent" class="control-label col-lg-2">內容<br>
+                                <label for="newsContent" class="control-label col-lg-2">內容<br/>
                                     (可拖拉改變編輯框大小)</label>
                                 <div class="col-lg-10">
                                     <textarea id="newsContent" name="newsContent" clientidmode="Static" runat="server" required=""></textarea>
-                                    <script>CKEDITOR.replace("newsContent");</script>
+                                    <script>CKEDITOR.replace("newsContent",
+    {
+        filebrowserBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+    });</script>
                                 </div>
                             </div>
                             <div class="form-group ">

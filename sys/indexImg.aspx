@@ -9,7 +9,7 @@
         <div class="col-md-12">
             <div class="content-panel">
                 <h4><i class="fa fa-angle-right"></i>首頁輪播照片管理</h4>
-                <p style="margin-left: 5px">最上方六筆為目前首頁照片</p>
+                <p style="margin: 5px; color: red;">最上方六筆為目前首頁照片</p>
                 <hr/>
 
                 <asp:GridView ID="GridView1" CssClass="table table-striped table-advance table-hover" runat="server" AutoGenerateColumns="False" DataKeyNames="id"  OnRowEditing="GridView1_RowEditing" GridLines="None" >

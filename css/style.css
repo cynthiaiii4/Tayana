@@ -314,12 +314,17 @@ body {
 	width: 99px;
 	overflow: hidden;
 }
+.bannerimg_p img{
+	width: 100%;
+	object-fit: cover;
+}
 .bannerimg  li  a {
 	background-image: url(../images/changbg1.gif);
 	background-repeat: no-repeat;
 	float: left;
 	width: 103px;
-	background-position: left top;
+	/* background-position: left bottom; */
+	object-fit: cover;
 	height: 70px;
 	display: block;
 }

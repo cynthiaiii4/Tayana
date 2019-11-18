@@ -53,7 +53,7 @@ namespace Tayan.sys.NEWS
             }
             if (!string.IsNullOrEmpty(keyword.Value))
             {
-                searchString += "and ((title LIKE % @keyword %) OR (summary LIKE % @keyword %) OR (newsContent LIKE % @keyword %))";
+                searchString += " and ((title LIKE '%'+ @keyword +'%') OR (summary LIKE '%'+ @keyword + '%') OR (newsContent LIKE '%' + @keyword +'%'))";
             }
 
             commandString = commandString.Replace("/*--where begin --*/",
@@ -83,16 +83,17 @@ namespace Tayan.sys.NEWS
             countString = countString.Replace("/*--where begin --*/",
                 String.Format("/*--where begin --*/{0}{1}", Environment.NewLine, searchString));
             SqlCommand count = new SqlCommand(countString, memberConnection);
-            showcommand.Parameters["@keyword"].Value = keyword.Value;
+            count.Parameters.Add("@keyword", SqlDbType.NVarChar);
+            count.Parameters["@keyword"].Value = keyword.Value;
             if (!string.IsNullOrEmpty(timeStart.Value))
             {
-                showcommand.Parameters.Add("@timeStart", SqlDbType.DateTime);
-                showcommand.Parameters["@timeStart"].Value = DateTime.Parse(timeStart.Value).ToString("yyyy-MM-dd");
+                count.Parameters.Add("@timeStart", SqlDbType.DateTime);
+                count.Parameters["@timeStart"].Value = DateTime.Parse(timeStart.Value).ToString("yyyy-MM-dd");
             }
             if (!string.IsNullOrEmpty(timeEnd.Value))
             {
-                showcommand.Parameters.Add("@timeEnd", SqlDbType.DateTime);
-                showcommand.Parameters["@timeEnd"].Value = DateTime.Parse(timeEnd.Value).AddDays(1).ToString("yyyy-MM-dd");
+                count.Parameters.Add("@timeEnd", SqlDbType.DateTime);
+                count.Parameters["@timeEnd"].Value = DateTime.Parse(timeEnd.Value).AddDays(1).ToString("yyyy-MM-dd");
             }
             SqlDataAdapter dataAdapter1 = new SqlDataAdapter(count);
             DataTable datatable1 = new DataTable();
@@ -122,7 +123,7 @@ namespace Tayan.sys.NEWS
             deletecommand.ExecuteNonQuery();
             memberConnection.Close();
             string page = Request["page"] ?? "1";
-            Response.Redirect($"editNEWS.aspx?page={page}");
+            ShowData();
         }
         protected void GridView1_RowEditing(object sender, GridViewEditEventArgs e)
         {
@@ -160,6 +161,22 @@ namespace Tayan.sys.NEWS
             Session.Remove("timeEnd");
             Session.Remove("keyword");
             Response.Redirect("NEWS.aspx");
+        }
+
+        protected void GridView1_OnRowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                if (e.Row.Cells[4].Text == "True")
+                {
+                    e.Row.Cells[4].Text = "✔";
+                }
+                else
+                {
+                    e.Row.Cells[4].Text = "";
+                }
+
+            }
         }
     }
 }

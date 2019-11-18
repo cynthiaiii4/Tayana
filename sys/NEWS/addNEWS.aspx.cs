@@ -38,7 +38,8 @@ namespace Tayan.sys.NEWS
                 //上傳目錄為/upload/Images/
                 img.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/images/{0}", ifileName)));
                 
-                myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "S", 161, 121);
+                myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "L", 161, 121);
+                myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "I", 95, 95);
             }
             else
             {

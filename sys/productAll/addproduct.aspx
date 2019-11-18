@@ -27,7 +27,15 @@
                                 <label for="overview" class="control-label col-lg-2">Overview</label>
                                 <div class="col-lg-10">
                                     <textarea id="overview" name="overview" clientidmode="Static" runat="server"></textarea>
-                                    <script>CKEDITOR.replace("overview");</script>
+                                    <script>CKEDITOR.replace("overview",
+    {
+        filebrowserBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+    });</script>
                                 </div>
                             </div>
 
@@ -35,14 +43,30 @@
                                 <label for="layout" class="control-label col-lg-2">Layout & deck plan</label>
                                 <div class="col-lg-10">
                                     <textarea id="layout" name="layout" clientidmode="Static" runat="server"></textarea>
-                                    <script>CKEDITOR.replace("layout");</script>
+                                    <script>CKEDITOR.replace("layout",
+    {
+        filebrowserBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+    });</script>
                                 </div>
                             </div>
                             <div class="form-group ">
                                 <label for="specification" class="control-label col-lg-2">Specification</label>
                                 <div class="col-lg-10">
                                     <textarea id="specification" name="specification" clientidmode="Static" runat="server"></textarea>
-                                    <script>CKEDITOR.replace("specification");</script>
+                                    <script>CKEDITOR.replace("specification",
+    {
+        filebrowserBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html',
+        filebrowserImageBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Images',
+        filebrowserFlashBrowseUrl: '/sys/ckeditor/ckfinder/ckfinder.html?type=Flash',
+        filebrowserUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Files',
+        filebrowserImageUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Images',
+        filebrowserFlashUploadUrl: '/sys/ckeditor/ckfinder/core/connector/aspx/connector.aspx?command=QuickUpload&type=Flash'
+    });</script>
                                 </div>
                             </div>
                             <div class="form-group ">

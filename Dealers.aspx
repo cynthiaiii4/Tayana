@@ -22,7 +22,7 @@
                     <li>
                         <div class="list02">
                             <ul>
-                                <li class="list02li"><div><p><img src='<%# "/sys/uploadfile/dealers/S"+Eval("photo") %>' runat="server" /></p></div></li>
+                                <li class="list02li"><div><p><img src='<%# "/sys/uploadfile/dealers/"+Eval("photo") %>' runat="server" style="object-fit: cover; width: 100%;"/></p></div></li>
                                 <li>  <asp:Label ID="country" runat="server" Text='<%# Bind("country") %>'></asp:Label><br />
                                     <asp:Literal ID="dealername" runat="server" Text='<%# Bind("dealer") %>'></asp:Literal><br />
                                     <asp:Literal ID="dealerInfo" runat="server" Text='<%# Bind("dealerInfo") %>'></asp:Literal>

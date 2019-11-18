@@ -78,7 +78,7 @@ namespace Tayan.sys.Dealers
                 ifileName = String.Format("{0:yyyyMMddhhmmsss}{1}", DateTime.Now, Extension);
                 //上傳目錄為/upload/Images/
                 photo.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/dealers/{0}", ifileName)));
-                myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "S", 209, 148);
+                myFunction.GenerateThumbnailImage(ifileName, Server.MapPath("~/sys/uploadfile/dealers/"), Server.MapPath("~/sys/uploadfile/dealers/"), "S", 209, 148);
             }
             else
             {

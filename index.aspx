@@ -8,77 +8,28 @@
     <title>TtayanaWorld (DEMO)</title>
     <script type="text/javascript" src="Scripts/jquery.min.js"></script>
     <script type="text/javascript" src="Scripts/jquery.cycle.all.2.74.js"></script>
-    <script type="text/javascript">
-
-
-        $(function () {
-
-            // 先取得 #abgne-block-20110111 , 必要參數及輪播間隔
-            var $block = $('#abgne-block-20110111'),
-                timrt, speed = 4000;
-
-
-            // 幫 #abgne-block-20110111 .title ul li 加上 hover() 事件
-            var $li = $('.title ul li', $block).hover(function () {
-                // 當滑鼠移上時加上 .over 樣式
-                $(this).addClass('over').siblings('.over').removeClass('over');
-            }, function () {
-                // 當滑鼠移出時移除 .over 樣式
-                $(this).removeClass('over');
-            }).click(function () {
-                // 當滑鼠點擊時, 顯示相對應的 div.info
-                // 並加上 .on 樣式
-
-                $(this).addClass('on').siblings('.on').removeClass('on');
-                $('#abgne-block-20110111 .bd .banner ul:eq(0)').children().hide().eq($(this).index()).fadeIn(1000);
-            });
-
-            // 幫 $block 加上 hover() 事件
-            $block.hover(function () {
-                // 當滑鼠移上時停止計時器
-                clearTimeout(timer);
-            }, function () {
-                // 當滑鼠移出時啟動計時器
-                timer = setTimeout(move, speed);
-            });
-
-            // 控制輪播
-            function move() {
-                var _index = $('.title ul li.on', $block).index();
-                _index = (_index + 1) % $li.length;
-                $li.eq(_index).click();
-
-                timer = setTimeout(move, speed);
-            }
-
-            // 啟動計時器
-            timer = setTimeout(move, speed);
-
-        });
-
-
-    </script>
     <!--[if lt IE 7]>
         <script type="text/javascript" src="javascript/iepngfix_tilebg.js"></script>
     <![endif]-->
     <link href="css/style.css" rel="stylesheet" type="text/css" />
     <link href="css/reset.css" rel="stylesheet" type="text/css" />
+   
 </head>
 <body>
     <form runat="server">
         <div class="contain">
             <div class="sub">
-                <p><a href="#">Home</a></p>
+                <p><a href="index.aspx">Home</a></p>
             </div>
 
             <!--------------------------------選單開始---------------------------------------------------->
             <div class="menu">
                 <ul>
-                    <li class="menuli01"><a href="#">Yachts</a></li>
-                    <li class="menuli02"><a href="#">NEWS</a></li>
-                    <li class="menuli03"><a href="#">COMPANY</a></li>
-                    <li class="menuli04"><a href="#">DEALERS</a></li>
-                    <li class="menuli05"><a href="#">CONTACT</a></li>
+                    <li class="menuli01"><a href="YachtOverview.aspx" runat="server" id="Overview">Yachts</a></li>
+                    <li class="menuli02"><a href="NEWS_list.aspx">NEWS</a></li>
+                    <li class="menuli03"><a href="Company.aspx">COMPANY</a></li>
+                    <li class="menuli04"><a href="Dealers.aspx" runat="server" id="Dealers">DEALERS</a></li>
+                    <li class="menuli05"><a href="Contact.aspx">CONTACT</a></li>
                 </ul>
             </div>
             <!--------------------------------選單開始結束---------------------------------------------------->
@@ -106,8 +57,8 @@
                             <%--<asp:Literal ID="bLi" runat="server"></asp:Literal>--%>
                             <asp:Repeater ID="Repeater1" runat="server">
                                 <ItemTemplate>
-                                    <li class="info on"><a href="#">
-                                        <img src='<%# "/sys/uploadfile/images/B"+ Eval("img") %>' runat="server" /></a><!--文字開始--><div class="wordtitle">
+                                    <li class="info"><a href="#">
+                                        <img src='<%# "/sys/uploadfile/images/"+ Eval("img") %>' runat="server" style="object-fit: cover;width: 100%;"/></a><!--文字開始--><div class="wordtitle">
                                             <asp:Literal ID="Literal1" runat="server" Text='<%# Bind("series") %>'></asp:Literal>
                                             <span><asp:Literal ID="Literal2" runat="server" Text='<%# Bind("number") %>'></asp:Literal></span><br />
                                             <p>SPECIFICATION SHEET</p>
@@ -168,7 +119,7 @@
                     <p class="newstitlep1">
                         <img src="images/news.gif" alt="news" />
                     </p>
-                    <p class="newstitlep2"><a href="#">More>></a></p>
+                    <p class="newstitlep2"><a href="NEWS_list.aspx">More>></a></p>
                 </div>
 
                 <ul>
@@ -184,12 +135,14 @@
                                     <!--TOP標籤結束-->
                                     <div class="news02p1">
                                         <p class="news02p1img">
-                                            <img src='<%# "/sys/uploadfile/images/S"+ Eval("img") %>' runat="server" alt="&quot;&quot;" />
+                                            <img src='<%# "/sys/uploadfile/images/I"+ Eval("img") %>' runat="server" alt="&quot;&quot;" />
                                         </p>
                                     </div>
                                     <p class="news02p2">
-                                        <span><asp:Literal ID="Literal2" runat="server" Text='<%# Eval("title").ToString().Length>20?Eval("title").ToString().Substring(0,20)+"...":Eval("title") %>'></asp:Literal></span>
-                                        <a href="#"><asp:Literal ID="Literal3" runat="server" Text='<%# Eval("summary").ToString().Length>50?Eval("summary").ToString().Substring(0,30)+"...":Eval("summary") %>'></asp:Literal></a>
+                                        <span style="color:#02a5b8"><asp:Literal ID="Literal2" runat="server" Text='<%# Eval("initDate","{0:d}")%>'></asp:Literal></span>
+                                        <span>
+                                        <a runat="server" ID="newslink" href='<%#"NEWS_view.aspx?id="+Eval("id")%>' ><asp:Label ID="Literal3" runat="server" Text='<%# Eval("title").ToString().Length>50?Eval("title").ToString().Substring(0,30)+"...":Eval("title") %>'></asp:Label></a>
+                                        </span>
                                     </p>
                                 </div>
                             </li>
@@ -226,9 +179,8 @@
 
             <!--------------------------------落款開始---------------------------------------------------->
             <div class="footer">
-
                 <div class="footerp00">
-                    <a href="#">
+                    <a href="http://www.tognews.com/">
                         <img src="images/tog.jpg" alt="&quot;&quot;" /></a>
                     <p class="footerp001">© 1973-2011 Tayana Yachts, Inc. All Rights Reserved</p>
                 </div>
@@ -241,5 +193,59 @@
 
         </div>
     </form>
+<script type="text/javascript">
+
+    document.querySelectorAll('.banner ul li')[0].classList.add("on");
+    $(function () {
+
+        // 先取得 #abgne-block-20110111 , 必要參數及輪播間隔
+        var $block = $('#abgne-block-20110111'),
+            timrt, speed = 4000;
+
+
+        // 幫 #abgne-block-20110111 .title ul li 加上 hover() 事件
+        var $li = $('.title ul li', $block).hover(function () {
+            // 當滑鼠移上時加上 .over 樣式
+            $(this).addClass('over').siblings('.over').removeClass('over');
+        }, function () {
+            // 當滑鼠移出時移除 .over 樣式
+            $(this).removeClass('over');
+        }).click(function () {
+            // 當滑鼠點擊時, 顯示相對應的 div.info
+            // 並加上 .on 樣式
+
+            $(this).addClass('on').siblings('.on').removeClass('on');
+            $('#abgne-block-20110111 .bd .banner ul:eq(0)').children().hide().eq($(this).index()).fadeIn(1000);
+        });
+
+        // 幫 $block 加上 hover() 事件
+        $block.hover(function () {
+            // 當滑鼠移上時停止計時器
+            clearTimeout(timer);
+        }, function () {
+            // 當滑鼠移出時啟動計時器
+            timer = setTimeout(move, speed);
+        });
+
+        //// 控制輪播
+        function move() {
+            var _index = $('.title ul li.on', $block).index();
+            _index = (_index + 1) % $li.length;
+            $li.eq(_index).click();
+
+            timer = setTimeout(move, speed);
+        }
+
+        // 啟動計時器
+        timer = setTimeout(move, speed);
+
+    });
+</script>
+<style>
+    .on {
+        width: 100%;
+    }
+     
+</style>
 </body>
 </html>

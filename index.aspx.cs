@@ -15,10 +15,25 @@ namespace Tayan
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            #region 圖
             string commandString = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnectionString"].ToString();
             SqlConnection Connection = new SqlConnection(commandString);
-            SqlCommand Command = new SqlCommand($"SELECT TOP 6 img,new,(SELECT series from [dbo].[products] WHERE [productID]=[id])as series,(SELECT number from [dbo].[products] WHERE [productID]=[id])as number FROM images WHERE indexPage = 1", Connection);
+
+            #region 上選單
+            SqlCommand command3 = new SqlCommand($"SELECT TOP 1 id FROM products ORDER BY id desc SELECT SCOPE_IDENTITY()", Connection);
+            SqlCommand command4 = new SqlCommand($"SELECT TOP 1 id FROM dealers ORDER BY id SELECT SCOPE_IDENTITY()", Connection);
+            Connection.Open();
+            string nid = command3.ExecuteScalar().ToString();
+            string did = command4.ExecuteScalar().ToString();
+            Connection.Close();
+            Overview.HRef = "YachtOverview.aspx?id=" + nid;
+            Dealers.HRef = "Dealers.aspx?id=" + did;
+
+
+            #endregion
+
+
+            #region 圖
+            SqlCommand Command = new SqlCommand($"SELECT TOP 6 img,new,(SELECT series from [dbo].[products] WHERE [productID]=[id])as series,(SELECT number from [dbo].[products] WHERE [productID]=[id])as number FROM images WHERE indexPage = 1 ORDER BY id desc", Connection);
             SqlDataAdapter Adapter = new SqlDataAdapter(Command);
             DataTable dataTable = new DataTable();
             Adapter.Fill(dataTable);

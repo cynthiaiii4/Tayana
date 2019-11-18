@@ -168,20 +168,20 @@ namespace Tayan.sys.productAll
                 {
                     if (item.ContentType.IndexOf("image") == -1)
                     {
-                        check.Text = "首頁照片格式錯誤!";
+                        check.Text = "照片格式錯誤!";
                         return;
                     }
 
                     //取得副檔名
                     string Extension = Path.GetExtension(item.FileName);
                     //新檔案名稱
-                    singlefile = String.Format("{0:yyyyMMddhhmmsss}{1}.{2}",DateTime.Now,i, Extension);
+                    singlefile = String.Format("{0:yyyyMMddhhmmsss}-{1}{2}",DateTime.Now,i, Extension);
                     //存進陣列
                     fileName.Add(singlefile);
                     //上傳目錄為/Images/
-                    images.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/images/{0}", singlefile)));
-                    myFunction.GenerateThumbnailImage(singlefile, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "S", 200, 63);
-                    myFunction.GenerateThumbnailImage(singlefile, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "B", 967, 449);
+                    item.SaveAs(Server.MapPath(String.Format("~/sys/uploadfile/images/{0}", singlefile)));
+                    myFunction.GenerateThumbnailImage(singlefile, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "S", 63);
+                    myFunction.GenerateThumbnailImage(singlefile, Server.MapPath("~/sys/uploadfile/images/"), Server.MapPath("~/sys/uploadfile/images/"), "B", 449);
                     i++;
                 }
 

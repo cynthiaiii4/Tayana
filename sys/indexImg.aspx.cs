@@ -63,7 +63,7 @@ namespace Tayan.sys
             string sql2 = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["ConnectionString"]
                 .ConnectionString;
             SqlConnection memberConnection2 = new SqlConnection(sql2);//建立連線通道
-            SqlCommand command2 = new SqlCommand($" UPDATE images SET indexPage=@indexPage where id=@id", memberConnection2);
+            SqlCommand command2 = new SqlCommand($" UPDATE images SET indexPage=@indexPage where productID=@id", memberConnection2);
             command2.Parameters.Add("@id", SqlDbType.NVarChar);
             command2.Parameters["@id"].Value = Rid;
             command2.Parameters.Add("@indexPage", SqlDbType.NVarChar);
@@ -73,7 +73,7 @@ namespace Tayan.sys
             command2.ExecuteNonQuery();
             memberConnection2.Close();
 
-            Response.Redirect("indexImg.aspx");
+            showData();
         }
 
     }

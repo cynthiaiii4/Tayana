@@ -43,6 +43,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="CKFinder">
+      <HintPath>sys\ckeditor\ckfinder\bin\Release\CKFinder.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.12.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -81,6 +84,8 @@
     <Content Include="css\reset.css" />
     <Content Include="css\style.css" />
     <Content Include="Dealers.aspx" />
+    <Content Include="Error.aspx" />
+    <Content Include="Global.asax" />
     <Content Include="YachtLayout.aspx" />
     <Content Include="NEWS_list.aspx" />
     <Content Include="NEWS_view.aspx" />
@@ -147,6 +152,16 @@
     </Compile>
     <Compile Include="Dealers.aspx.designer.cs">
       <DependentUpon>Dealers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.designer.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="YachtLayout.aspx.cs">
       <DependentUpon>YachtLayout.aspx</DependentUpon>
